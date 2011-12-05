@@ -30,7 +30,21 @@
 
 - (void)viewDidLoad
 {
-    inputScroll.layer.mask = YES;
+    //UIImageView * roundedView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"mask_up.png"]];
+    // Get the Layer of any view
+    CAGradientLayer *li = [CAGradientLayer layer];
+    li.frame = inputScroll.bounds;
+    li.colors = [NSArray arrayWithObjects:(__bridge id)[UIColor whiteColor].CGColor, (__bridge id)[UIColor clearColor].CGColor, nil];
+    li.endPoint = CGPointMake(0.5f, 0.0f);
+    li.startPoint = CGPointMake(0.5f, 1.0f);
+    inputScroll.layer.mask = li;
+    
+    CAGradientLayer *lo= [CAGradientLayer layer];
+    lo.frame = outputScroll.bounds;
+    lo.colors = [NSArray arrayWithObjects:(__bridge id)[UIColor whiteColor].CGColor, (__bridge id)[UIColor clearColor].CGColor, nil];
+    lo.startPoint = CGPointMake(0.5f, 0.0f);
+    lo.endPoint = CGPointMake(0.5f, 1.0f);
+    outputScroll.layer.mask = lo;
     
     /*
     UIView *mask = [[CustomMask alloc] init];
@@ -175,7 +189,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

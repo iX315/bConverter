@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1881" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" nextObjectID="110" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1881" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" nextObjectID="112" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="876"/>
@@ -57,7 +57,29 @@
                                 <rect key="frame" x="0.0" y="134" width="320" height="212"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="105" userLabel="input_scroll">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="106" userLabel="input_scroll">
+                                <rect key="frame" x="0.0" y="134" width="320" height="107"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="button_up_bin.png" id="99">
+                                        <rect key="frame" x="30" y="21" width="87" height="86"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="button_up_dec.png" id="91">
+                                        <rect key="frame" x="118" y="21" width="87" height="86"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="button_up_ott.png" id="100">
+                                        <rect key="frame" x="206" y="21" width="87" height="86"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="button_up_hex.png" id="101">
+                                        <rect key="frame" x="294" y="21" width="87" height="86"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="105" userLabel="output_scroll">
                                 <rect key="frame" x="0.0" y="239" width="335" height="107"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
@@ -80,28 +102,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="106" userLabel="output_scroll">
-                                <rect key="frame" x="0.0" y="134" width="320" height="107"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="button_up_bin.png" id="99">
-                                        <rect key="frame" x="30" y="21" width="87" height="86"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="button_up_dec.png" id="91">
-                                        <rect key="frame" x="118" y="21" width="87" height="86"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="button_up_ott.png" id="100">
-                                        <rect key="frame" x="206" y="21" width="87" height="86"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="button_up_hex.png" id="101">
-                                        <rect key="frame" x="294" y="21" width="87" height="86"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
-                                </subviews>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -117,9 +117,9 @@
                         <outlet property="dec_up" destination="91" id="96"/>
                         <outlet property="glow" destination="55" id="58"/>
                         <outlet property="input" destination="64" id="66"/>
-                        <outlet property="inputScroll" destination="105" id="107"/>
+                        <outlet property="inputScroll" destination="106" id="110"/>
                         <outlet property="output" destination="50" id="51"/>
-                        <outlet property="outputScroll" destination="106" id="108"/>
+                        <outlet property="outputScroll" destination="105" id="111"/>
                         <outlet property="troll" destination="84" id="85"/>
                     </connections>
                 </viewController>
@@ -133,7 +133,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Trollface.png" width="618" height="564"/>
+        <image name="Trollface.png" width="618" height="618"/>
         <image name="background.png" width="320" height="480"/>
         <image name="button_up_bin.png" width="87" height="86"/>
         <image name="button_up_dec.png" width="87" height="86"/>
@@ -148,6 +148,23 @@
         <image name="switch_bg.png" width="320" height="212"/>
         <image name="switch_light.png" width="320" height="212"/>
     </resources>
+    <classes>
+        <class className="bConverterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/bConverterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="endEdit"/>
+                <relationship kind="action" name="initEdit"/>
+                <relationship kind="outlet" name="dec_up" candidateClass="UIImage"/>
+                <relationship kind="outlet" name="glow" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="input" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="inputScroll" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="mask_up" candidateClass="UIImage"/>
+                <relationship kind="outlet" name="output" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="outputScroll" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="troll" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedMetricsInferredSentinel key="topBar"/>
         <simulatedMetricsInferredSentinel key="bottomBar"/>
