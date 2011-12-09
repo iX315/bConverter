@@ -30,25 +30,24 @@
 
 - (void)viewDidLoad
 {
-    //UIImageView * roundedView = [[UIImageView alloc] initWithImage: [UIImage imageNamed:@"mask_up.png"]];
-    // Get the Layer of any view
     CAGradientLayer *li = [CAGradientLayer layer];
     li.frame = inputScroll.bounds;
     li.colors = [NSArray arrayWithObjects:(__bridge id)[UIColor whiteColor].CGColor, (__bridge id)[UIColor clearColor].CGColor, nil];
-    li.endPoint = CGPointMake(0.5f, 0.0f);
-    li.startPoint = CGPointMake(0.5f, 1.0f);
+    li.endPoint = CGPointMake(0.0, 0.4);
+    li.startPoint = CGPointMake(0.0, 0.5);
     inputScroll.layer.mask = li;
     
     CAGradientLayer *lo= [CAGradientLayer layer];
     lo.frame = outputScroll.bounds;
     lo.colors = [NSArray arrayWithObjects:(__bridge id)[UIColor whiteColor].CGColor, (__bridge id)[UIColor clearColor].CGColor, nil];
-    lo.startPoint = CGPointMake(0.5f, 0.0f);
-    lo.endPoint = CGPointMake(0.5f, 1.0f);
+    lo.startPoint = CGPointMake(0.0, 0.5);
+    lo.endPoint = CGPointMake(0.0, 0.6);
     outputScroll.layer.mask = lo;
     
     /*
-    UIView *mask = [[CustomMask alloc] init];
-    [_view layer].mask =[mask layer];
+    CALayer *mask_o = [CALayer layer];
+    mask_o.contents = (__bridge id)[[UIImage imageNamed:@"mask_down.png"] CGImage];
+    outputScroll.layer.mask = mask_o;
     */
     drecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
     [drecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
