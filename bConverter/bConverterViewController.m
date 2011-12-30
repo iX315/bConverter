@@ -15,10 +15,11 @@
 @synthesize output;
 @synthesize glow;
 @synthesize troll;
-@synthesize mask_up;
-@synthesize dec_up;
+@synthesize closed_up;
+@synthesize closed_down;
 @synthesize inputScroll;
 @synthesize outputScroll;
+@synthesize pickerView;
 
 - (void)didReceiveMemoryWarning
 {
@@ -30,38 +31,85 @@
 
 - (void)viewDidLoad
 {
-    CAGradientLayer *li = [CAGradientLayer layer];
-    li.frame = inputScroll.bounds;
-    li.colors = [NSArray arrayWithObjects:(__bridge id)[UIColor whiteColor].CGColor, (__bridge id)[UIColor clearColor].CGColor, nil];
-    li.endPoint = CGPointMake(0.0, 0.4);
-    li.startPoint = CGPointMake(0.0, 0.5);
-    inputScroll.layer.mask = li;
+    // Do any additional setup after loading the view, typically from a nib.
+    [super viewDidLoad];
     
-    CAGradientLayer *lo= [CAGradientLayer layer];
-    lo.frame = outputScroll.bounds;
-    lo.colors = [NSArray arrayWithObjects:(__bridge id)[UIColor whiteColor].CGColor, (__bridge id)[UIColor clearColor].CGColor, nil];
-    lo.startPoint = CGPointMake(0.0, 0.5);
-    lo.endPoint = CGPointMake(0.0, 0.6);
-    outputScroll.layer.mask = lo;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1.0];
+    closed_up.transform = CGAffineTransformMakeTranslation(0.0,-200.0);
+    closed_down.transform = CGAffineTransformMakeTranslation(0.0,200.0);
     
-    /*
-    CALayer *mask_o = [CALayer layer];
-    mask_o.contents = (__bridge id)[[UIImage imageNamed:@"mask_down.png"] CGImage];
-    outputScroll.layer.mask = mask_o;
-    */
+    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/shutter.caf", [[NSBundle mainBundle] resourcePath]]];
+    
+	NSError *error;
+	audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+	audioPlayer.numberOfLoops = 0;
+    
+	if (audioPlayer == nil)
+		NSLog(@"%@", error.description);
+	else
+		[audioPlayer play];
+    
+    [UIView commitAnimations];
+    
+	[inputScroll setCanCancelContentTouches:NO];
+	inputScroll.clipsToBounds = YES;		// default is NO, we want to restrict drawing within our inputScroll
+	inputScroll.scrollEnabled = YES;
+	inputScroll.pagingEnabled = NO;
+    
+    [outputScroll setCanCancelContentTouches:NO];
+	outputScroll.clipsToBounds = YES;		// default is NO, we want to restrict drawing within our inputScroll
+	outputScroll.scrollEnabled = YES;
+	outputScroll.pagingEnabled = NO;
+    
+    [self addImageWithName:@"button_up_hex.png" atUpPosition:-2];
+    [self addImageWithName:@"button_up_ott.png" atUpPosition:-1];
+    [self addImageWithName:@"button_up_dec.png" atUpPosition:0];
+    [self addImageWithName:@"button_up_bin.png" atUpPosition:1];
+	[self addImageWithName:@"button_up_hex.png" atUpPosition:2];
+    [self addImageWithName:@"button_up_ott.png" atUpPosition:3];
+    [self addImageWithName:@"button_up_dec.png" atUpPosition:4];
+    [self addImageWithName:@"button_up_bin.png" atUpPosition:5];
+	[self addImageWithName:@"button_up_hex.png" atUpPosition:6];
+    [self addImageWithName:@"button_up_ott.png" atUpPosition:7];
+    
+    [self addImageWithName:@"buttons_down_hex.png" atDownPosition:-2];
+    [self addImageWithName:@"buttons_down_ott.png" atDownPosition:-1];
+    [self addImageWithName:@"buttons_down_dec.png" atDownPosition:0];
+    [self addImageWithName:@"buttons_down_bin.png" atDownPosition:1];
+	[self addImageWithName:@"buttons_down_hex.png" atDownPosition:2];
+    [self addImageWithName:@"buttons_down_ott.png" atDownPosition:3];
+    [self addImageWithName:@"buttons_down_dec.png" atDownPosition:4];
+    [self addImageWithName:@"buttons_down_bin.png" atDownPosition:5];
+	[self addImageWithName:@"buttons_down_hex.png" atDownPosition:6];
+    [self addImageWithName:@"buttons_down_ott.png" atDownPosition:7];
+    
+	inputScroll.contentSize = CGSizeMake(480, 0);    
+	[inputScroll setContentOffset:CGPointMake(40,0) animated:YES];
+    
+    outputScroll.contentSize = CGSizeMake(480, 0);
+    [outputScroll setContentOffset:CGPointMake(40,0) animated:YES];
+    
+    [input setFont:[UIFont fontWithName:@"WW Digital" size:30.0]];
+    [output setFont:[UIFont fontWithName:@"WW Digital" size:30.0]];
+    
+    
+    CALayer *lp= [CALayer layer];
+    lp.frame = pickerView.bounds;
+    lp.contents = (__bridge id)[[UIImage imageNamed:(@"mask.png")] CGImage];
+    pickerView.layer.mask = lp;
+    
     drecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
     [drecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
     [[self view] addGestureRecognizer:drecognizer];
     urecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];
     [urecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
     [[self view] addGestureRecognizer:urecognizer];
-    
-	// Do any additional setup after loading the view, typically from a nib.
-    [super viewDidLoad];
-}
+} 
 
 -(IBAction)endEdit {
     [input resignFirstResponder];
+    
     troll.alpha = 0.0;
     NSString *inputValue = [input text];
     //snippets converters here
@@ -107,12 +155,23 @@
     [UIView commitAnimations];
     
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:3.0];
+    [UIView setAnimationDuration:2.0];
     [[self view] removeGestureRecognizer:urecognizer];
     [[self view] removeGestureRecognizer:drecognizer];
     output.transform = CGAffineTransformMakeTranslation(0.0,140.0);
     troll.transform = CGAffineTransformMakeTranslation(0.0,140.0);
     [UIView commitAnimations];
+    
+    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/swipe.caf", [[NSBundle mainBundle] resourcePath]]];
+    
+	NSError *error;
+	audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+	audioPlayer.numberOfLoops = 0;
+    
+	if (audioPlayer == nil)
+		NSLog(@"%@", error.description);
+	else
+		[audioPlayer play];
 }
 
 -(void)handleSwipeUp:(UISwipeGestureRecognizerDirection *)sender {
@@ -154,6 +213,34 @@
 }
 
 #pragma mark - UI
+
+- (void)addImageWithName:(NSString*)imageString atUpPosition:(int)position {
+	// add image to scroll view
+	UIImage *image = [UIImage imageNamed:imageString];
+	UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+	imageView.frame = CGRectMake(position*80, 0, 80, 86);
+	[inputScroll addSubview:imageView];
+}
+
+- (void)addImageWithName:(NSString*)imageString atDownPosition:(int)position {
+	// add image to scroll view
+	UIImage *imageDown = [UIImage imageNamed:imageString];
+	UIImageView *imageDownView = [[UIImageView alloc] initWithImage:imageDown];
+	imageDownView.frame = CGRectMake(position*80, 0, 80, 86);
+	[outputScroll addSubview:imageDownView];
+}
+
+
+//////////////////////////////////////////
+- (void)scrollViewWillEndDragging:(UIScrollView *)inputScroll withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    //*targetContentOffset = CGPointMake(targetContentOffset->x + (((int)targetContentOffset->x) % 12), 0);
+    //*targetContentOffset = CGPointMake(40, 0);
+}
+
+/*-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+}*/
+//////////////////////////////////////////
 
 
 #pragma mark - Others
