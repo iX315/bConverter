@@ -16,6 +16,7 @@
 {
   
     // Override point for customization after application launch.
+    [TestFlight takeOff:@"aa3dd3073a41e20a6a3740f978479673_NDM4NjEyMDExLTEyLTA2IDA1OjE0OjE0LjE5MTM0Nw"];
     [self.window makeKeyAndVisible];
     return YES;
 }

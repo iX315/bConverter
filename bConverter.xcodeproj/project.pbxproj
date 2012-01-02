@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B201659D148B529900918973 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B201659A148B526A00918973 /* QuartzCore.framework */; };
+		B202452414AFAAFF007B8D14 /* inputScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = B202452314AFAAFF007B8D14 /* inputScrollController.m */; };
+		B20B606214AF87A900624057 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B20B606014AF87A900624057 /* libTestFlight.a */; };
 		B229BE6A148D789E0048A594 /* troll.png in Resources */ = {isa = PBXBuildFile; fileRef = B229BE69148D789E0048A594 /* troll.png */; };
 		B235DA89149554A2002D0056 /* shutter.caf in Resources */ = {isa = PBXBuildFile; fileRef = B235DA87149554A2002D0056 /* shutter.caf */; };
 		B235DA8A149554A2002D0056 /* swipe.caf in Resources */ = {isa = PBXBuildFile; fileRef = B235DA88149554A2002D0056 /* swipe.caf */; };
+		B23782C414B2026E00EBED64 /* outputScrollController.m in Sources */ = {isa = PBXBuildFile; fileRef = B23782C314B2026E00EBED64 /* outputScrollController.m */; };
 		B26852D01486C1D400FDDB3B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26852CF1486C1D300FDDB3B /* UIKit.framework */; };
 		B26852D21486C1D400FDDB3B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26852D11486C1D400FDDB3B /* Foundation.framework */; };
 		B26852D41486C1D400FDDB3B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26852D31486C1D400FDDB3B /* CoreGraphics.framework */; };
@@ -124,9 +127,15 @@
 
 /* Begin PBXFileReference section */
 		B201659A148B526A00918973 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B202452214AFAAFF007B8D14 /* inputScrollController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inputScrollController.h; path = classes/inputScrollController.h; sourceTree = "<group>"; };
+		B202452314AFAAFF007B8D14 /* inputScrollController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = inputScrollController.m; path = classes/inputScrollController.m; sourceTree = "<group>"; };
+		B20B606014AF87A900624057 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = bConverter/libTestFlight.a; sourceTree = "<group>"; };
+		B20B606114AF87A900624057 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = bConverter/TestFlight.h; sourceTree = "<group>"; };
 		B229BE69148D789E0048A594 /* troll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = troll.png; sourceTree = "<group>"; };
 		B235DA87149554A2002D0056 /* shutter.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = shutter.caf; sourceTree = "<group>"; };
 		B235DA88149554A2002D0056 /* swipe.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = swipe.caf; sourceTree = "<group>"; };
+		B23782C214B2026E00EBED64 /* outputScrollController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = outputScrollController.h; path = classes/outputScrollController.h; sourceTree = "<group>"; };
+		B23782C314B2026E00EBED64 /* outputScrollController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = outputScrollController.m; path = classes/outputScrollController.m; sourceTree = "<group>"; };
 		B26852CB1486C1D300FDDB3B /* bConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26852CF1486C1D300FDDB3B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B26852D11486C1D400FDDB3B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -209,6 +218,7 @@
 				B26852D01486C1D400FDDB3B /* UIKit.framework in Frameworks */,
 				B26852D21486C1D400FDDB3B /* Foundation.framework in Frameworks */,
 				B26852D41486C1D400FDDB3B /* CoreGraphics.framework in Frameworks */,
+				B20B606214AF87A900624057 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +236,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B202452614AFAB0B007B8D14 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B202452214AFAAFF007B8D14 /* inputScrollController.h */,
+				B202452314AFAAFF007B8D14 /* inputScrollController.m */,
+				B23782C214B2026E00EBED64 /* outputScrollController.h */,
+				B23782C314B2026E00EBED64 /* outputScrollController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		B26852C01486C1D300FDDB3B = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +270,8 @@
 		B26852CE1486C1D300FDDB3B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B20B606014AF87A900624057 /* libTestFlight.a */,
+				B20B606114AF87A900624057 /* TestFlight.h */,
 				B2A2FCFE14954F7F00A38801 /* AVFoundation.framework */,
 				B26852CF1486C1D300FDDB3B /* UIKit.framework */,
 				B26852D11486C1D400FDDB3B /* Foundation.framework */,
@@ -262,6 +285,7 @@
 		B26852D51486C1D400FDDB3B /* bConverter */ = {
 			isa = PBXGroup;
 			children = (
+				B202452614AFAB0B007B8D14 /* Classes */,
 				B26852DE1486C1D400FDDB3B /* bConverterAppDelegate.h */,
 				B26852DF1486C1D400FDDB3B /* bConverterAppDelegate.m */,
 				B26852E11486C1D400FDDB3B /* MainStoryboard.storyboard */,
@@ -589,6 +613,8 @@
 				B26852DC1486C1D400FDDB3B /* main.m in Sources */,
 				B26852E01486C1D400FDDB3B /* bConverterAppDelegate.m in Sources */,
 				B26852E71486C1D400FDDB3B /* bConverterViewController.m in Sources */,
+				B202452414AFAAFF007B8D14 /* inputScrollController.m in Sources */,
+				B23782C414B2026E00EBED64 /* outputScrollController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,8 +686,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PROVISIONING_PROFILE = "93B7C0C4-F818-4D42-9F58-B4887589DEFE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "93B7C0C4-F818-4D42-9F58-B4887589DEFE";
+				PROVISIONING_PROFILE = "FED3610A-3DD1-4567-BCA1-46F64B49B035";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FED3610A-3DD1-4567-BCA1-46F64B49B035";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -682,8 +708,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "93B7C0C4-F818-4D42-9F58-B4887589DEFE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "93B7C0C4-F818-4D42-9F58-B4887589DEFE";
+				PROVISIONING_PROFILE = "FED3610A-3DD1-4567-BCA1-46F64B49B035";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FED3610A-3DD1-4567-BCA1-46F64B49B035";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -697,9 +723,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bConverter/bConverter-Prefix.pch";
 				INFOPLIST_FILE = "bConverter/bConverter-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/bConverter\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "93B7C0C4-F818-4D42-9F58-B4887589DEFE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "93B7C0C4-F818-4D42-9F58-B4887589DEFE";
+				PROVISIONING_PROFILE = "FED3610A-3DD1-4567-BCA1-46F64B49B035";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FED3610A-3DD1-4567-BCA1-46F64B49B035";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -712,9 +742,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bConverter/bConverter-Prefix.pch";
 				INFOPLIST_FILE = "bConverter/bConverter-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/bConverter\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "93B7C0C4-F818-4D42-9F58-B4887589DEFE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "93B7C0C4-F818-4D42-9F58-B4887589DEFE";
+				PROVISIONING_PROFILE = "FED3610A-3DD1-4567-BCA1-46F64B49B035";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FED3610A-3DD1-4567-BCA1-46F64B49B035";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

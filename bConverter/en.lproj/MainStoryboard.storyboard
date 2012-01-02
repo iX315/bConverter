@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1881" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" nextObjectID="144" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="876"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
     </dependencies>
     <scenes>
         <scene sceneID="5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstRespodner"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="bConverterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -17,7 +17,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="01001" textAlignment="center" minimumFontSize="20" id="64" userLabel="input">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="input" textAlignment="center" minimumFontSize="20" id="64" userLabel="input">
                                 <rect key="frame" x="30" y="20" width="260" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -30,7 +30,7 @@
                                     <action selector="initEdit" destination="2" eventType="editingChanged" id="142"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="321" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="20" id="50" userLabel="output">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="output" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="20" id="50" userLabel="output">
                                 <rect key="frame" x="30" y="230" width="260" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -63,20 +63,15 @@
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="106" userLabel="input_scroll">
                                         <rect key="frame" x="0.0" y="20" width="320" height="87"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <subviews/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="delegate" destination="2" id="133"/>
+                                            <outlet property="delegate" destination="Eld-Km-tl2" id="Ddj-vY-KVB"/>
                                         </connections>
                                     </scrollView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="105" userLabel="output_scroll">
                                         <rect key="frame" x="0.0" y="106" width="320" height="87"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <subviews/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="2" id="134"/>
-                                        </connections>
                                     </scrollView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="buttons_separator.png" id="141">
                                         <rect key="frame" x="0.0" y="105" width="320" height="3"/>
@@ -101,18 +96,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
-                    <simulatedMetricsInferredSentinel key="simulatedTopBarMetrics"/>
-                    <simulatedMetricsInferredSentinel key="simulatedBottomBarMetrics"/>
-                    <simulatedMetricsInferredSentinel key="simulatedOrientationMetrics"/>
-                    <simulatedMetricsInferredSentinel key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="closed_down" destination="136" id="139"/>
                         <outlet property="closed_up" destination="135" id="138"/>
                         <outlet property="glow" destination="55" id="58"/>
                         <outlet property="input" destination="64" id="66"/>
-                        <outlet property="inputScroll" destination="106" id="110"/>
                         <outlet property="output" destination="50" id="51"/>
-                        <outlet property="outputScroll" destination="105" id="111"/>
                         <outlet property="pickerView" destination="121" id="123"/>
                         <outlet property="troll" destination="113" id="114"/>
                     </connections>
@@ -127,6 +116,12 @@
                         <outlet property="delegate" destination="3" id="120"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <customObject id="Eld-Km-tl2" customClass="inputScrollController">
+                    <connections>
+                        <outlet property="delegate" destination="3" id="3Nv-mt-81T"/>
+                        <outlet property="inputScroll" destination="106" id="R6e-7r-tMj"/>
+                    </connections>
+                </customObject>
             </objects>
         </scene>
     </scenes>
@@ -141,8 +136,7 @@
         <image name="troll.png" width="314" height="127"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedMetricsInferredSentinel key="topBar"/>
-        <simulatedMetricsInferredSentinel key="bottomBar"/>
+        <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>

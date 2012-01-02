@@ -7,7 +7,7 @@
 //
 
 #import "bConverterViewController.h"
-#import <QuartzCore/QuartzCore.h>
+#import "inputScrollController.h"
 
 @implementation bConverterViewController
 
@@ -17,7 +17,6 @@
 @synthesize troll;
 @synthesize closed_up;
 @synthesize closed_down;
-@synthesize inputScroll;
 @synthesize outputScroll;
 @synthesize pickerView;
 
@@ -33,6 +32,7 @@
 {
     // Do any additional setup after loading the view, typically from a nib.
     [super viewDidLoad];
+    //[inputScrollController class];
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:1.0];
@@ -52,26 +52,10 @@
     
     [UIView commitAnimations];
     
-	[inputScroll setCanCancelContentTouches:NO];
-	inputScroll.clipsToBounds = YES;		// default is NO, we want to restrict drawing within our inputScroll
-	inputScroll.scrollEnabled = YES;
-	inputScroll.pagingEnabled = NO;
-    
     [outputScroll setCanCancelContentTouches:NO];
-	outputScroll.clipsToBounds = YES;		// default is NO, we want to restrict drawing within our inputScroll
+	outputScroll.clipsToBounds = NO;		// default is NO, we want to restrict drawing within our inputScroll
 	outputScroll.scrollEnabled = YES;
 	outputScroll.pagingEnabled = NO;
-    
-    [self addImageWithName:@"button_up_hex.png" atUpPosition:-2];
-    [self addImageWithName:@"button_up_ott.png" atUpPosition:-1];
-    [self addImageWithName:@"button_up_dec.png" atUpPosition:0];
-    [self addImageWithName:@"button_up_bin.png" atUpPosition:1];
-	[self addImageWithName:@"button_up_hex.png" atUpPosition:2];
-    [self addImageWithName:@"button_up_ott.png" atUpPosition:3];
-    [self addImageWithName:@"button_up_dec.png" atUpPosition:4];
-    [self addImageWithName:@"button_up_bin.png" atUpPosition:5];
-	[self addImageWithName:@"button_up_hex.png" atUpPosition:6];
-    [self addImageWithName:@"button_up_ott.png" atUpPosition:7];
     
     [self addImageWithName:@"buttons_down_hex.png" atDownPosition:-2];
     [self addImageWithName:@"buttons_down_ott.png" atDownPosition:-1];
@@ -83,12 +67,12 @@
     [self addImageWithName:@"buttons_down_bin.png" atDownPosition:5];
 	[self addImageWithName:@"buttons_down_hex.png" atDownPosition:6];
     [self addImageWithName:@"buttons_down_ott.png" atDownPosition:7];
+    [self addImageWithName:@"buttons_down_dec.png" atDownPosition:8];
+    [self addImageWithName:@"buttons_down_bin.png" atDownPosition:9];
+	[self addImageWithName:@"buttons_down_hex.png" atDownPosition:10];
     
-	inputScroll.contentSize = CGSizeMake(480, 0);    
-	[inputScroll setContentOffset:CGPointMake(40,0) animated:YES];
-    
-    outputScroll.contentSize = CGSizeMake(480, 0);
-    [outputScroll setContentOffset:CGPointMake(40,0) animated:YES];
+    outputScroll.contentSize = CGSizeMake(640, 0);
+    [outputScroll setContentOffset:CGPointMake(120,0) animated:YES];
     
     [input setFont:[UIFont fontWithName:@"WW Digital" size:30.0]];
     [output setFont:[UIFont fontWithName:@"WW Digital" size:30.0]];
@@ -109,8 +93,7 @@
 
 -(IBAction)endEdit {
     [input resignFirstResponder];
-    
-    troll.alpha = 0.0;
+        
     NSString *inputValue = [input text];
     //snippets converters here
     if ([inputValue isEqualToString:@"artofapps"]) {
@@ -119,6 +102,11 @@
         troll.alpha = 1.0;
         [output setText:nil];
     } else {
+        //look for buttons contentOffset->x
+        
+        
+        /*
+        //DEC TO BIN
         NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
         if(inputValue.integerValue > 0){
             for(NSInteger numberCopy = inputValue.integerValue; numberCopy > 0; numberCopy >>= 1){	
@@ -130,10 +118,13 @@
             [str insertString:@"0" atIndex:0];
         }
         [output setText:str];
+        */
     }
     [[self view] addGestureRecognizer:drecognizer];
     [[self view] addGestureRecognizer:urecognizer];
 }
+
+
 
 -(IBAction)initEdit {
     [[self view] removeGestureRecognizer:urecognizer];
@@ -214,13 +205,7 @@
 
 #pragma mark - UI
 
-- (void)addImageWithName:(NSString*)imageString atUpPosition:(int)position {
-	// add image to scroll view
-	UIImage *image = [UIImage imageNamed:imageString];
-	UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-	imageView.frame = CGRectMake(position*80, 0, 80, 86);
-	[inputScroll addSubview:imageView];
-}
+
 
 - (void)addImageWithName:(NSString*)imageString atDownPosition:(int)position {
 	// add image to scroll view
@@ -232,14 +217,8 @@
 
 
 //////////////////////////////////////////
-- (void)scrollViewWillEndDragging:(UIScrollView *)inputScroll withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-    //*targetContentOffset = CGPointMake(targetContentOffset->x + (((int)targetContentOffset->x) % 12), 0);
-    //*targetContentOffset = CGPointMake(40, 0);
-}
 
-/*-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-}*/
+
 //////////////////////////////////////////
 
 
