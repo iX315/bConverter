@@ -7,7 +7,6 @@
 //
 
 #import "bConverterViewController.h"
-#import "inputScrollController.h"
 
 @implementation bConverterViewController
 
@@ -17,6 +16,7 @@
 @synthesize troll;
 @synthesize closed_up;
 @synthesize closed_down;
+@synthesize inputScroll;
 @synthesize outputScroll;
 @synthesize pickerView;
 
@@ -32,7 +32,8 @@
 {
     // Do any additional setup after loading the view, typically from a nib.
     [super viewDidLoad];
-    //[inputScrollController class];
+    inputSet = @"HEX";
+    outputSet = @"OTT";
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:1.0];
@@ -52,6 +53,28 @@
     
     [UIView commitAnimations];
     
+    [inputScroll setCanCancelContentTouches:NO];
+    inputScroll.clipsToBounds = NO;		// default is NO, we want to restrict drawing within our inputScroll
+    inputScroll.scrollEnabled = YES;
+    inputScroll.pagingEnabled = NO;
+    
+    [self addImageWithName:@"button_up_hex.png" atUpPosition:-2];
+    [self addImageWithName:@"button_up_ott.png" atUpPosition:-1];
+    [self addImageWithName:@"button_up_dec.png" atUpPosition:0];
+    [self addImageWithName:@"button_up_bin.png" atUpPosition:1];
+    [self addImageWithName:@"button_up_hex.png" atUpPosition:2];
+    [self addImageWithName:@"button_up_ott.png" atUpPosition:3];
+    [self addImageWithName:@"button_up_dec.png" atUpPosition:4];
+    [self addImageWithName:@"button_up_bin.png" atUpPosition:5];
+    [self addImageWithName:@"button_up_hex.png" atUpPosition:6];
+    [self addImageWithName:@"button_up_ott.png" atUpPosition:7];
+    [self addImageWithName:@"button_up_dec.png" atUpPosition:8];
+    [self addImageWithName:@"button_up_bin.png" atUpPosition:9];
+    [self addImageWithName:@"button_up_hex.png" atUpPosition:10];
+    
+    inputScroll.contentSize = CGSizeMake(640, 0);    
+    [inputScroll setContentOffset:CGPointMake(40,0) animated:YES];
+
     [outputScroll setCanCancelContentTouches:NO];
 	outputScroll.clipsToBounds = NO;		// default is NO, we want to restrict drawing within our inputScroll
 	outputScroll.scrollEnabled = YES;
@@ -76,24 +99,25 @@
     
     [input setFont:[UIFont fontWithName:@"WW Digital" size:30.0]];
     [output setFont:[UIFont fontWithName:@"WW Digital" size:30.0]];
-    
-    
+        
     CALayer *lp= [CALayer layer];
     lp.frame = pickerView.bounds;
     lp.contents = (__bridge id)[[UIImage imageNamed:(@"mask.png")] CGImage];
     pickerView.layer.mask = lp;
-    
-    drecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
-    [drecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
-    [[self view] addGestureRecognizer:drecognizer];
-    urecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];
-    [urecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
-    [[self view] addGestureRecognizer:urecognizer];
 } 
+
+#pragma mark - Actions
+
+
+-(IBAction)initEdit {
+    [[self view] removeGestureRecognizer:urecognizer];
+    [[self view] removeGestureRecognizer:drecognizer];
+}
 
 -(IBAction)endEdit {
     [input resignFirstResponder];
         
+    troll.alpha = 0.0;
     NSString *inputValue = [input text];
     //snippets converters here
     if ([inputValue isEqualToString:@"artofapps"]) {
@@ -101,12 +125,65 @@
     }else if ([inputValue isEqualToString:@"troll"]) {
         troll.alpha = 1.0;
         [output setText:nil];
+    }else if ([inputValue isEqualToString:@"input"]) {
+        [[self view] removeGestureRecognizer:urecognizer];
+        [[self view] removeGestureRecognizer:drecognizer];
     } else {
-        //look for buttons contentOffset->x
-        
-        
-        /*
-        //DEC TO BIN
+        [self conversionDidBeginFrom:inputSet to:outputSet fromValue:inputValue];
+    }
+    
+    drecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
+    [drecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
+    [[self view] addGestureRecognizer:drecognizer];
+    urecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];
+    [urecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
+    [[self view] addGestureRecognizer:urecognizer];
+}
+
+-(void)conversionDidBeginFrom:(inout NSString *)inputSet to:(inout NSString *)outputSet fromValue:(inout NSString *)inputValue {
+    //////////////////////////////////////////////////////////////////////////////
+    if ([inputSet isEqualToString:@"DEC"] && [outputSet isEqualToString:@"OTT"]) {
+        //NSLog(@"%o", inputValue.integerValue);
+        [output setText:[NSString stringWithFormat:@"%o", inputValue.integerValue]];
+        //NSLog(@"DEC to OTT");
+    }
+    if ([inputSet isEqualToString:@"DEC"] && [outputSet isEqualToString:@"HEX"]) {
+        //NSLog(@"%X", inputValue.integerValue);
+        [output setText:[NSString stringWithFormat:@"%X", inputValue.integerValue]];
+        //NSLog(@"DEC to HEX");
+    }
+    if ([inputSet isEqualToString:@"DEC"] && [outputSet isEqualToString:@"BIN"]) {
+         //DEC TO BIN
+         NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
+         if(inputValue.integerValue > 0){
+         for(NSInteger numberCopy = inputValue.integerValue; numberCopy > 0; numberCopy >>= 1){	
+         // Prepend "0" or "1", depending on the bit
+         [str insertString:((numberCopy & 1) ? @"1" : @"0") atIndex:0];
+         }
+         }
+         else if(inputValue.integerValue == 0){
+         [str insertString:@"0" atIndex:0];
+         }
+         [output setText:str];
+        //NSLog(@"DEC to BIN");
+    }
+    if ([inputSet isEqualToString:@"DEC"] && [outputSet isEqualToString:@"DEC"]) {
+        //NSLog(@"DEC to DEC");
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"DEC"]) {
+        //NSLog(@"%d", inputValue.integerValue);
+        NSString *str = [NSString stringWithFormat:@"%o", inputValue.integerValue];
+        [output setText:[NSString stringWithFormat:@"%d", str.integerValue]];
+        //NSLog(@"OTT to DEC");
+    }
+    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"HEX"]) {
+        //NSLog(@"%X", inputValue.integerValue);
+        NSString *str = [NSString stringWithFormat:@"%o", inputValue.integerValue];
+        [output setText:[NSString stringWithFormat:@"%X", str.integerValue]];
+        //NSLog(@"OTT to HEX");
+    }
+    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"BIN"]) {
         NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
         if(inputValue.integerValue > 0){
             for(NSInteger numberCopy = inputValue.integerValue; numberCopy > 0; numberCopy >>= 1){	
@@ -118,23 +195,46 @@
             [str insertString:@"0" atIndex:0];
         }
         [output setText:str];
-        */
+        //NSLog(@"OTT to BIN");
     }
-    [[self view] addGestureRecognizer:drecognizer];
-    [[self view] addGestureRecognizer:urecognizer];
-}
-
-
-
--(IBAction)initEdit {
-    [[self view] removeGestureRecognizer:urecognizer];
-    [[self view] removeGestureRecognizer:drecognizer];
+    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"OTT"]) {
+        //NSLog(@"OTT to OTT");
+    }
+    //////////////////////////////////////////////////////////////////////////////
+    if ([inputSet isEqualToString:@"HEX"] && [outputSet isEqualToString:@"DEC"]) {
+        //NSLog(@"%d", inputValue.integerValue);
+        [output setText:[NSString stringWithFormat:@"%d", inputValue]];
+        //NSLog(@"HEX to DEC");
+    }
+    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"HEX"]) {
+        //NSLog(@"%X", inputValue.integerValue);
+        [output setText:[NSString stringWithFormat:@"%X", inputValue]];
+        //NSLog(@"OTT to HEX");
+    }
+    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"BIN"]) {
+        NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
+        if(inputValue.integerValue > 0){
+            for(NSInteger numberCopy = inputValue.integerValue; numberCopy > 0; numberCopy >>= 1){	
+                // Prepend "0" or "1", depending on the bit
+                [str insertString:((numberCopy & 1) ? @"1" : @"0") atIndex:0];
+            }
+        }
+        else if(inputValue.integerValue == 0){
+            [str insertString:@"0" atIndex:0];
+        }
+        [output setText:str];
+        //NSLog(@"OTT to BIN");
+    }
+    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"OTT"]) {
+        //NSLog(@"OTT to OTT");
+    }
+    //////////////////////////////////////////////////////////////////////////////
 }
 
 #pragma mark - Animations
 
 -(void)handleSwipeDown:(UISwipeGestureRecognizerDirection *)sender {
-    //NSLog(@"Swipe received.");
+    ////NSLog(@"Swipe received.");
     
     [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animation_end:) userInfo:nil repeats:NO];
 
@@ -166,7 +266,7 @@
 }
 
 -(void)handleSwipeUp:(UISwipeGestureRecognizerDirection *)sender {
-     //NSLog(@"Swipe received.");
+     ////NSLog(@"Swipe received.");
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animation_end:) userInfo:nil repeats:NO];
     
     [UIView beginAnimations:nil context:NULL];
@@ -179,6 +279,7 @@
     [UIView setAnimationDuration:2.0];
     [[self view] removeGestureRecognizer:urecognizer];
     [[self view] removeGestureRecognizer:drecognizer];
+    input.userInteractionEnabled = NO;
     input.transform = CGAffineTransformMakeTranslation(0.0,0.0);
     [UIView commitAnimations];
 }
@@ -201,11 +302,18 @@
 - (void)animation_end:(NSTimer *)thetime {
     [[self view] addGestureRecognizer:drecognizer];
     [[self view] addGestureRecognizer:urecognizer];
+    input.userInteractionEnabled = YES;
 }
 
 #pragma mark - UI
 
-
+- (void)addImageWithName:(NSString*)imageString atUpPosition:(int)position {
+	// add image to scroll view
+	UIImage *image = [UIImage imageNamed:imageString];
+	UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+	imageView.frame = CGRectMake(position*80, 0, 80, 86);
+	[inputScroll addSubview:imageView];
+}
 
 - (void)addImageWithName:(NSString*)imageString atDownPosition:(int)position {
 	// add image to scroll view
@@ -217,6 +325,51 @@
 
 
 //////////////////////////////////////////
+
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    
+    //1st HEX
+    if (targetContentOffset->x >= 0 && targetContentOffset->x <= 79) {
+        velocity = CGPointMake(100, 0);
+        *targetContentOffset = CGPointMake(40, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"HEX";
+        } else {
+            outputSet = @"HEX";
+        }
+    }
+    //2nd OTT
+    if (targetContentOffset->x >= 80 && targetContentOffset->x <= 159) {
+        velocity = CGPointMake(100, 0);
+        *targetContentOffset = CGPointMake(120, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"OTT";
+        } else {
+            outputSet = @"OTT";
+        }
+    }
+    //3th DEC
+    if (targetContentOffset->x >= 160 && targetContentOffset->x <= 239) {
+        velocity = CGPointMake(100, 0);
+        *targetContentOffset = CGPointMake(200, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"DEC";
+        } else {
+            outputSet = @"DEC";
+        }
+    }
+    //4th BIN
+    if (targetContentOffset->x >= 240 && targetContentOffset->x <= 320) {
+        velocity = CGPointMake(100, 0);
+        *targetContentOffset = CGPointMake(280, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"BIN";
+        } else {
+            outputSet = @"BIN";
+        }
+    }
+}
 
 
 //////////////////////////////////////////

@@ -60,18 +60,21 @@
                                 <rect key="frame" x="0.0" y="134" width="320" height="212"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="106" userLabel="input_scroll">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="106" userLabel="input_scroll">
                                         <rect key="frame" x="0.0" y="20" width="320" height="87"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="delegate" destination="Eld-Km-tl2" id="Ddj-vY-KVB"/>
+                                            <outlet property="delegate" destination="2" id="9hl-Id-GMf"/>
                                         </connections>
                                     </scrollView>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="105" userLabel="output_scroll">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="105" userLabel="output_scroll">
                                         <rect key="frame" x="0.0" y="106" width="320" height="87"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2" id="CtD-1c-nWF"/>
+                                        </connections>
                                     </scrollView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="buttons_separator.png" id="141">
                                         <rect key="frame" x="0.0" y="105" width="320" height="3"/>
@@ -101,8 +104,10 @@
                         <outlet property="closed_up" destination="135" id="138"/>
                         <outlet property="glow" destination="55" id="58"/>
                         <outlet property="input" destination="64" id="66"/>
+                        <outlet property="inputScroll" destination="106" id="F1V-fZ-aUz"/>
                         <outlet property="output" destination="50" id="51"/>
-                        <outlet property="pickerView" destination="121" id="123"/>
+                        <outlet property="outputScroll" destination="105" id="1Bo-AU-1QC"/>
+                        <outlet property="pickerView" destination="121" id="Smm-Zk-1S0"/>
                         <outlet property="troll" destination="113" id="114"/>
                     </connections>
                 </viewController>
@@ -116,12 +121,6 @@
                         <outlet property="delegate" destination="3" id="120"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <customObject id="Eld-Km-tl2" customClass="inputScrollController">
-                    <connections>
-                        <outlet property="delegate" destination="3" id="3Nv-mt-81T"/>
-                        <outlet property="inputScroll" destination="106" id="R6e-7r-tMj"/>
-                    </connections>
-                </customObject>
             </objects>
         </scene>
     </scenes>
