@@ -14,6 +14,7 @@
 @synthesize output;
 @synthesize glow;
 @synthesize troll;
+@synthesize urlImage;
 @synthesize closed_up;
 @synthesize closed_down;
 @synthesize inputScroll;
@@ -129,6 +130,15 @@
         [[self view] removeGestureRecognizer:urecognizer];
         [[self view] removeGestureRecognizer:drecognizer];
     } else {
+        //check a database of strings mysql on artofapps site
+        //if the string exist then:
+        if ([inputValue isEqualToString:nil]) {
+            //and then set all (urlImage or output)
+            nil;
+        } else {
+            //else error
+            [output setText:@"error"];
+        }
         [self conversionDidBeginFrom:inputSet to:outputSet fromValue:inputValue];
     }
     
@@ -138,21 +148,27 @@
     urecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];
     [urecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
     [[self view] addGestureRecognizer:urecognizer];
+    
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = output.text;
 }
 
 -(void)conversionDidBeginFrom:(inout NSString *)inputSet to:(inout NSString *)outputSet fromValue:(inout NSString *)inputValue {
+    
+    NSString *inputScrollSet = inputSet;
+    NSString *outputScrollSet = outputSet;
     //////////////////////////////////////////////////////////////////////////////
-    if ([inputSet isEqualToString:@"DEC"] && [outputSet isEqualToString:@"OTT"]) {
+    if ([inputScrollSet isEqualToString:@"DEC"] && [outputScrollSet isEqualToString:@"OTT"]) {
         //NSLog(@"%o", inputValue.integerValue);
         [output setText:[NSString stringWithFormat:@"%o", inputValue.integerValue]];
         //NSLog(@"DEC to OTT");
     }
-    if ([inputSet isEqualToString:@"DEC"] && [outputSet isEqualToString:@"HEX"]) {
+    if ([inputScrollSet isEqualToString:@"DEC"] && [outputScrollSet isEqualToString:@"HEX"]) {
         //NSLog(@"%X", inputValue.integerValue);
         [output setText:[NSString stringWithFormat:@"%X", inputValue.integerValue]];
         //NSLog(@"DEC to HEX");
     }
-    if ([inputSet isEqualToString:@"DEC"] && [outputSet isEqualToString:@"BIN"]) {
+    if ([inputScrollSet isEqualToString:@"DEC"] && [outputScrollSet isEqualToString:@"BIN"]) {
          //DEC TO BIN
          NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
          if(inputValue.integerValue > 0){
@@ -167,23 +183,23 @@
          [output setText:str];
         //NSLog(@"DEC to BIN");
     }
-    if ([inputSet isEqualToString:@"DEC"] && [outputSet isEqualToString:@"DEC"]) {
+    if ([inputScrollSet isEqualToString:@"DEC"] && [outputScrollSet isEqualToString:@"DEC"]) {
         //NSLog(@"DEC to DEC");
     }
     //////////////////////////////////////////////////////////////////////////////
-    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"DEC"]) {
+    if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"DEC"]) {
         //NSLog(@"%d", inputValue.integerValue);
         NSString *str = [NSString stringWithFormat:@"%o", inputValue.integerValue];
         [output setText:[NSString stringWithFormat:@"%d", str.integerValue]];
         //NSLog(@"OTT to DEC");
     }
-    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"HEX"]) {
+    if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"HEX"]) {
         //NSLog(@"%X", inputValue.integerValue);
         NSString *str = [NSString stringWithFormat:@"%o", inputValue.integerValue];
         [output setText:[NSString stringWithFormat:@"%X", str.integerValue]];
         //NSLog(@"OTT to HEX");
     }
-    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"BIN"]) {
+    if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"BIN"]) {
         NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
         if(inputValue.integerValue > 0){
             for(NSInteger numberCopy = inputValue.integerValue; numberCopy > 0; numberCopy >>= 1){	
@@ -197,21 +213,21 @@
         [output setText:str];
         //NSLog(@"OTT to BIN");
     }
-    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"OTT"]) {
+    if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"OTT"]) {
         //NSLog(@"OTT to OTT");
     }
     //////////////////////////////////////////////////////////////////////////////
-    if ([inputSet isEqualToString:@"HEX"] && [outputSet isEqualToString:@"DEC"]) {
+    if ([inputScrollSet isEqualToString:@"HEX"] && [outputScrollSet isEqualToString:@"DEC"]) {
         //NSLog(@"%d", inputValue.integerValue);
         [output setText:[NSString stringWithFormat:@"%d", inputValue]];
         //NSLog(@"HEX to DEC");
     }
-    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"HEX"]) {
+    if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"HEX"]) {
         //NSLog(@"%X", inputValue.integerValue);
         [output setText:[NSString stringWithFormat:@"%X", inputValue]];
         //NSLog(@"OTT to HEX");
     }
-    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"BIN"]) {
+    if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"BIN"]) {
         NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
         if(inputValue.integerValue > 0){
             for(NSInteger numberCopy = inputValue.integerValue; numberCopy > 0; numberCopy >>= 1){	
@@ -225,10 +241,12 @@
         [output setText:str];
         //NSLog(@"OTT to BIN");
     }
-    if ([inputSet isEqualToString:@"OTT"] && [outputSet isEqualToString:@"OTT"]) {
+    if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"OTT"]) {
         //NSLog(@"OTT to OTT");
     }
     //////////////////////////////////////////////////////////////////////////////
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = output.text;
 }
 
 #pragma mark - Animations
@@ -251,6 +269,7 @@
     [[self view] removeGestureRecognizer:drecognizer];
     output.transform = CGAffineTransformMakeTranslation(0.0,140.0);
     troll.transform = CGAffineTransformMakeTranslation(0.0,140.0);
+    urlImage.transform = CGAffineTransformMakeTranslation(0.0,140.0);
     [UIView commitAnimations];
     
     NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/swipe.caf", [[NSBundle mainBundle] resourcePath]]];
@@ -273,6 +292,7 @@
     [UIView setAnimationDuration:1.0];
     output.transform = CGAffineTransformMakeTranslation(0.0,0.0);
     troll.transform = CGAffineTransformMakeTranslation(0.0,0.0);
+    urlImage.transform = CGAffineTransformMakeTranslation(0.0,0.0);
     [UIView commitAnimations];
             
     [UIView beginAnimations:nil context:NULL];
@@ -283,7 +303,6 @@
     input.transform = CGAffineTransformMakeTranslation(0.0,0.0);
     [UIView commitAnimations];
 }
-
 
 - (void)alpha_on:(NSTimer *)thetime {
 	[UIView beginAnimations:nil context:NULL];
@@ -331,7 +350,6 @@
     
     //1st HEX
     if (targetContentOffset->x >= 0 && targetContentOffset->x <= 79) {
-        velocity = CGPointMake(100, 0);
         *targetContentOffset = CGPointMake(40, 0);
         if (scrollView.tag == 1) {
             inputSet = @"HEX";
@@ -341,7 +359,6 @@
     }
     //2nd OTT
     if (targetContentOffset->x >= 80 && targetContentOffset->x <= 159) {
-        velocity = CGPointMake(100, 0);
         *targetContentOffset = CGPointMake(120, 0);
         if (scrollView.tag == 1) {
             inputSet = @"OTT";
@@ -351,7 +368,6 @@
     }
     //3th DEC
     if (targetContentOffset->x >= 160 && targetContentOffset->x <= 239) {
-        velocity = CGPointMake(100, 0);
         *targetContentOffset = CGPointMake(200, 0);
         if (scrollView.tag == 1) {
             inputSet = @"DEC";
@@ -361,7 +377,6 @@
     }
     //4th BIN
     if (targetContentOffset->x >= 240 && targetContentOffset->x <= 320) {
-        velocity = CGPointMake(100, 0);
         *targetContentOffset = CGPointMake(280, 0);
         if (scrollView.tag == 1) {
             inputSet = @"BIN";

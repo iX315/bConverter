@@ -14,6 +14,7 @@
     UILabel *output;
     UIImageView *glow;
     UIImageView *troll;
+    UIImageView *urlImage;
     UIImageView *closed_up;
     UIImageView *closed_down;
     UIScrollView *inputScroll;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *output;
 @property (nonatomic, retain) IBOutlet UIImageView *glow;
 @property (nonatomic, retain) IBOutlet UIImageView *troll;
+@property (nonatomic, retain) IBOutlet UIImageView *urlImage;
 @property (nonatomic, retain) IBOutlet UIImageView *closed_up;
 @property (nonatomic, retain) IBOutlet UIImageView *closed_down;
 @property (nonatomic, retain) IBOutlet UIScrollView *inputScroll;
