@@ -10,6 +10,7 @@
 
 @implementation bConverterViewController
 
+@synthesize infoButton;
 @synthesize input;
 @synthesize output;
 @synthesize glow;
@@ -20,6 +21,14 @@
 @synthesize inputScroll;
 @synthesize outputScroll;
 @synthesize pickerView;
+
+@synthesize decelerationRate;
+
+int pageW = 80;
+int pageG = 40;
+int start = 0;
+int iU;
+int iD;
 
 - (void)didReceiveMemoryWarning
 {
@@ -33,24 +42,43 @@
 {
     // Do any additional setup after loading the view, typically from a nib.
     [super viewDidLoad];
-    inputSet = @"HEX";
-    outputSet = @"OTT";
+    
+    inputSet = @"DEC";
+    outputSet = @"BIN";
+    
+    inputScroll.decelerationRate = UIScrollViewDecelerationRateFast;
+    outputScroll.decelerationRate = UIScrollViewDecelerationRateFast;
+    
+    self.view.userInteractionEnabled = YES;
+    
+    [infoButton setImage:[UIImage imageNamed:@"infobutton_.png"] forState:UIControlEventTouchDown];
+    
+    drecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
+    [drecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
+    [[self view] addGestureRecognizer:drecognizer];
+    urecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];
+    [urecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
+    [[self view] addGestureRecognizer:urecognizer];
+    
+    start++;
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:1.0];
     closed_up.transform = CGAffineTransformMakeTranslation(0.0,-200.0);
     closed_down.transform = CGAffineTransformMakeTranslation(0.0,200.0);
     
-    NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/shutter.caf", [[NSBundle mainBundle] resourcePath]]];
-    
-	NSError *error;
-	audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-	audioPlayer.numberOfLoops = 0;
-    
-	if (audioPlayer == nil)
-		NSLog(@"%@", error.description);
-	else
-		[audioPlayer play];
+    if (start == 1) {
+        NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/shutter.caf", [[NSBundle mainBundle] resourcePath]]];
+        
+        NSError *error;
+        audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+        audioPlayer.numberOfLoops = 0;
+        
+        if (audioPlayer == nil)
+            NSLog(@"%@", error.description);
+        else
+            [audioPlayer play];
+    }
     
     [UIView commitAnimations];
     
@@ -59,44 +87,48 @@
     inputScroll.scrollEnabled = YES;
     inputScroll.pagingEnabled = NO;
     
-    [self addImageWithName:@"button_up_hex.png" atUpPosition:-2];
-    [self addImageWithName:@"button_up_ott.png" atUpPosition:-1];
-    [self addImageWithName:@"button_up_dec.png" atUpPosition:0];
-    [self addImageWithName:@"button_up_bin.png" atUpPosition:1];
-    [self addImageWithName:@"button_up_hex.png" atUpPosition:2];
-    [self addImageWithName:@"button_up_ott.png" atUpPosition:3];
-    [self addImageWithName:@"button_up_dec.png" atUpPosition:4];
-    [self addImageWithName:@"button_up_bin.png" atUpPosition:5];
-    [self addImageWithName:@"button_up_hex.png" atUpPosition:6];
-    [self addImageWithName:@"button_up_ott.png" atUpPosition:7];
-    [self addImageWithName:@"button_up_dec.png" atUpPosition:8];
-    [self addImageWithName:@"button_up_bin.png" atUpPosition:9];
-    [self addImageWithName:@"button_up_hex.png" atUpPosition:10];
+    for(int iU=-16; iU<16; iU++)
+    {
+        if (iU == -16 | iU == -12 | iU == -8 | iU == -4 | iU == 0 | iU == 4 | iU == 8 | iU == 12 | iU == 16) {
+            [self addImageWithName:@"button_up_dec.png" atUpPosition:iU];
+        }
+        if (iU == -15 | iU == -11 | iU == -7 | iU == -3 | iU == 1 | iU == 5 | iU == 9 | iU == 13) {
+            [self addImageWithName:@"button_up_bin.png" atUpPosition:iU];
+        }
+        if (iU == -14 | iU == -10 | iU == -6 | iU == -2 | iU == 2 | iU == 6 | iU == 10 | iU == 14) {
+            [self addImageWithName:@"button_up_hex.png" atUpPosition:iU];
+        }
+        if (iU == -13 | iU == -9 | iU == -5 | iU == -1 | iU == 3 | iU == 7 | iU == 11 | iU == 15) {
+            [self addImageWithName:@"button_up_ott.png" atUpPosition:iU];
+        }
+    }
     
-    inputScroll.contentSize = CGSizeMake(640, 0);    
-    [inputScroll setContentOffset:CGPointMake(40,0) animated:YES];
+    inputScroll.contentSize = CGSizeMake(pageW*16, 0);    
+    [inputScroll setContentOffset:CGPointMake(pageW*3-pageG,0) animated:YES];
 
     [outputScroll setCanCancelContentTouches:NO];
 	outputScroll.clipsToBounds = NO;		// default is NO, we want to restrict drawing within our inputScroll
 	outputScroll.scrollEnabled = YES;
 	outputScroll.pagingEnabled = NO;
     
-    [self addImageWithName:@"buttons_down_hex.png" atDownPosition:-2];
-    [self addImageWithName:@"buttons_down_ott.png" atDownPosition:-1];
-    [self addImageWithName:@"buttons_down_dec.png" atDownPosition:0];
-    [self addImageWithName:@"buttons_down_bin.png" atDownPosition:1];
-	[self addImageWithName:@"buttons_down_hex.png" atDownPosition:2];
-    [self addImageWithName:@"buttons_down_ott.png" atDownPosition:3];
-    [self addImageWithName:@"buttons_down_dec.png" atDownPosition:4];
-    [self addImageWithName:@"buttons_down_bin.png" atDownPosition:5];
-	[self addImageWithName:@"buttons_down_hex.png" atDownPosition:6];
-    [self addImageWithName:@"buttons_down_ott.png" atDownPosition:7];
-    [self addImageWithName:@"buttons_down_dec.png" atDownPosition:8];
-    [self addImageWithName:@"buttons_down_bin.png" atDownPosition:9];
-	[self addImageWithName:@"buttons_down_hex.png" atDownPosition:10];
+    for(int iD=-16; iD<16; iD++)
+    {
+        if (iD == -16 | iD == -12 | iD == -8 | iD == -4 | iD == 0 | iD == 4 | iD == 8 | iD == 12 | iD == 16) {
+            [self addImageWithName:@"buttons_down_dec.png" atDownPosition:iD];
+        }
+        if (iD == -15 | iD == -11 | iD == -7 | iD == -3 | iD == 1 | iD == 5 | iD == 9 | iD == 13) {
+            [self addImageWithName:@"buttons_down_bin.png" atDownPosition:iD];
+        }
+        if (iD == -14 | iD == -10 | iD == -6 | iD == -2 | iD == 2 | iD == 6 | iD == 10 | iD == 14) {
+            [self addImageWithName:@"buttons_down_hex.png" atDownPosition:iD];
+        }
+        if (iD == -13 | iD == -9 | iD == -5 | iD == -1 | iD == 3 | iD == 7 | iD == 11 | iD == 15) {
+            [self addImageWithName:@"buttons_down_ott.png" atDownPosition:iD];
+        }
+    }
     
-    outputScroll.contentSize = CGSizeMake(640, 0);
-    [outputScroll setContentOffset:CGPointMake(120,0) animated:YES];
+    outputScroll.contentSize = CGSizeMake(pageW*16, 0);
+    [outputScroll setContentOffset:CGPointMake(pageW*4-pageG,0) animated:YES];
     
     [input setFont:[UIFont fontWithName:@"WW Digital" size:30.0]];
     [output setFont:[UIFont fontWithName:@"WW Digital" size:30.0]];
@@ -109,9 +141,19 @@
 
 #pragma mark - Actions
 
+- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showAlternate"]) {
+        [[segue destinationViewController] setDelegate:self];
+    }
+}
 
 -(IBAction)initEdit {
-    [[self view] removeGestureRecognizer:urecognizer];
     [[self view] removeGestureRecognizer:drecognizer];
 }
 
@@ -127,14 +169,13 @@
         troll.alpha = 1.0;
         [output setText:nil];
     }else if ([inputValue isEqualToString:@"input"]) {
-        [[self view] removeGestureRecognizer:urecognizer];
         [[self view] removeGestureRecognizer:drecognizer];
+        [[self view] removeGestureRecognizer:urecognizer];
     } else {
         //check a database of strings mysql on artofapps site
         //if the string exist then:
         if ([inputValue isEqualToString:nil]) {
             //and then set all (urlImage or output)
-            nil;
         } else {
             //else error
             [output setText:@"error"];
@@ -142,12 +183,8 @@
         [self conversionDidBeginFrom:inputSet to:outputSet fromValue:inputValue];
     }
     
-    drecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
-    [drecognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
+    self.view.userInteractionEnabled = YES;
     [[self view] addGestureRecognizer:drecognizer];
-    urecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUp:)];
-    [urecognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
-    [[self view] addGestureRecognizer:urecognizer];
     
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = output.text;
@@ -157,94 +194,208 @@
     
     NSString *inputScrollSet = inputSet;
     NSString *outputScrollSet = outputSet;
-    //////////////////////////////////////////////////////////////////////////////
+
+{//DEC to ALL
+    NSString *errorD = @"error not dec";
+    NSCharacterSet *characterSet = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
     if ([inputScrollSet isEqualToString:@"DEC"] && [outputScrollSet isEqualToString:@"OTT"]) {
-        //NSLog(@"%o", inputValue.integerValue);
-        [output setText:[NSString stringWithFormat:@"%o", inputValue.integerValue]];
-        //NSLog(@"DEC to OTT");
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            [output setText:[NSString stringWithFormat:@"%o", inputValue.integerValue]];
+            //NSLog(@"DEC to OTT");
+        } else {
+            [output setText:errorD];
+        }
     }
     if ([inputScrollSet isEqualToString:@"DEC"] && [outputScrollSet isEqualToString:@"HEX"]) {
-        //NSLog(@"%X", inputValue.integerValue);
-        [output setText:[NSString stringWithFormat:@"%X", inputValue.integerValue]];
-        //NSLog(@"DEC to HEX");
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            [output setText:[NSString stringWithFormat:@"%X", inputValue.integerValue]];
+            //NSLog(@"DEC to HEX");
+        } else {
+            [output setText:errorD];
+        }
     }
     if ([inputScrollSet isEqualToString:@"DEC"] && [outputScrollSet isEqualToString:@"BIN"]) {
-         //DEC TO BIN
-         NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
-         if(inputValue.integerValue > 0){
-         for(NSInteger numberCopy = inputValue.integerValue; numberCopy > 0; numberCopy >>= 1){	
-         // Prepend "0" or "1", depending on the bit
-         [str insertString:((numberCopy & 1) ? @"1" : @"0") atIndex:0];
-         }
-         }
-         else if(inputValue.integerValue == 0){
-         [str insertString:@"0" atIndex:0];
-         }
-         [output setText:str];
-        //NSLog(@"DEC to BIN");
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) { 
+            NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
+            if(inputValue.integerValue > 0){
+                for(NSInteger numberCopy = inputValue.integerValue; numberCopy > 0; numberCopy >>= 1){	
+                    // Prepend "0" or "1", depending on the bit
+                    [str insertString:((numberCopy & 1) ? @"1" : @"0") atIndex:0];
+                }
+            }
+            else if(inputValue.integerValue == 0){
+                [str insertString:@"0" atIndex:0];
+            }
+            [output setText:str];
+            //NSLog(@"DEC to BIN");
+        } else {
+            [output setText:errorD];
+        }
     }
     if ([inputScrollSet isEqualToString:@"DEC"] && [outputScrollSet isEqualToString:@"DEC"]) {
-        //NSLog(@"DEC to DEC");
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            [output setText:inputValue];
+            //NSLog(@"DEC to DEC");
+        } else {
+            [output setText:errorD];
+        }
     }
-    //////////////////////////////////////////////////////////////////////////////
+}//DEC to ALL
+
+{//OTT to ALL
+    NSString *errorO = @"error not oct";
+    NSCharacterSet *characterSet = [[NSCharacterSet characterSetWithCharactersInString:@"012345678"] invertedSet];
     if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"DEC"]) {
-        //NSLog(@"%d", inputValue.integerValue);
-        NSString *str = [NSString stringWithFormat:@"%o", inputValue.integerValue];
-        [output setText:[NSString stringWithFormat:@"%d", str.integerValue]];
-        //NSLog(@"OTT to DEC");
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            NSString *str = [NSString stringWithFormat:@"%o", inputValue.integerValue];
+            [output setText:[NSString stringWithFormat:@"%d", str.integerValue]];
+            //NSLog(@"OTT to DEC");
+        } else {
+            [output setText:errorO];
+        }
     }
     if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"HEX"]) {
-        //NSLog(@"%X", inputValue.integerValue);
-        NSString *str = [NSString stringWithFormat:@"%o", inputValue.integerValue];
-        [output setText:[NSString stringWithFormat:@"%X", str.integerValue]];
-        //NSLog(@"OTT to HEX");
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            NSString *str = [NSString stringWithFormat:@"%o", inputValue.integerValue];
+            [output setText:[NSString stringWithFormat:@"%X", str.integerValue]];
+            //NSLog(@"OTT to HEX");
+        } else {
+            [output setText:errorO];
+        }
     }
     if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"BIN"]) {
-        NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
-        if(inputValue.integerValue > 0){
-            for(NSInteger numberCopy = inputValue.integerValue; numberCopy > 0; numberCopy >>= 1){	
-                // Prepend "0" or "1", depending on the bit
-                [str insertString:((numberCopy & 1) ? @"1" : @"0") atIndex:0];
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            NSString *strO = [NSString stringWithFormat:@"%o", inputValue.integerValue];
+            NSString *strD = [NSString stringWithFormat:@"%d", strO.integerValue];
+            NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
+            if(strD.integerValue > 0){
+                for(NSInteger numberCopy = strD.integerValue; numberCopy > 0; numberCopy >>= 1){	
+                    // Prepend "0" or "1", depending on the bit
+                    [str insertString:((numberCopy & 1) ? @"1" : @"0") atIndex:0];
+                }
             }
+            else if(strD.integerValue == 0){
+                [str insertString:@"0" atIndex:0];
+            }
+            [output setText:str];
+            //NSLog(@"OTT to BIN");
+        } else {
+            [output setText:errorO];
         }
-        else if(inputValue.integerValue == 0){
-            [str insertString:@"0" atIndex:0];
-        }
-        [output setText:str];
-        //NSLog(@"OTT to BIN");
     }
     if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"OTT"]) {
-        //NSLog(@"OTT to OTT");
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            [output setText:inputValue];
+            //NSLog(@"OTT to OTT");
+        } else {
+            [output setText:errorO];
+        }
     }
-    //////////////////////////////////////////////////////////////////////////////
-    if ([inputScrollSet isEqualToString:@"HEX"] && [outputScrollSet isEqualToString:@"DEC"]) {
-        //NSLog(@"%d", inputValue.integerValue);
-        [output setText:[NSString stringWithFormat:@"%d", inputValue]];
+}//OTT to ALL
+
+{//BIN to ALL
+    NSString *errorB = @"error not bin";
+    NSCharacterSet *characterSet = [[NSCharacterSet characterSetWithCharactersInString:@"01"] invertedSet];
+    
+    if ([inputScrollSet isEqualToString:@"BIN"] && [outputScrollSet isEqualToString:@"DEC"]) {
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            long v = strtol([inputValue UTF8String], NULL, 2);
+            NSString *str = [NSString stringWithFormat:@"%d", v];
+            [output setText:str];
+        } else {
+            [output setText:errorB];
+        }
         //NSLog(@"HEX to DEC");
     }
-    if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"HEX"]) {
-        //NSLog(@"%X", inputValue.integerValue);
-        [output setText:[NSString stringWithFormat:@"%X", inputValue]];
+    if ([inputScrollSet isEqualToString:@"BIN"] && [outputScrollSet isEqualToString:@"HEX"]) {
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            long v = strtol([inputValue UTF8String], NULL, 2);
+            NSString *str = [NSString stringWithFormat:@"%X", v];
+            [output setText:str];
+        } else {
+            [output setText:errorB];
+        }
         //NSLog(@"OTT to HEX");
     }
-    if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"BIN"]) {
-        NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
-        if(inputValue.integerValue > 0){
-            for(NSInteger numberCopy = inputValue.integerValue; numberCopy > 0; numberCopy >>= 1){	
-                // Prepend "0" or "1", depending on the bit
-                [str insertString:((numberCopy & 1) ? @"1" : @"0") atIndex:0];
+    if ([inputScrollSet isEqualToString:@"BIN"] && [outputScrollSet isEqualToString:@"OTT"]) {
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            long v = strtol([inputValue UTF8String], NULL, 2);
+            NSString *str = [NSString stringWithFormat:@"%o", v];
+            [output setText:str];
+        } else {
+            [output setText:errorB];
+        }
+        //NSLog(@"BIN to OTT");
+    }
+    if ([inputScrollSet isEqualToString:@"BIN"] && [outputScrollSet isEqualToString:@"BIN"]) {
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            [output setText:inputValue];
+        } else {
+            [output setText:errorB];
+        }
+        //NSLog(@"BIN to BIN");
+    }
+}//BIN to ALL
+
+{//HEX to ALL
+    NSString *errorH = @"error not hex";
+    NSCharacterSet *characterSet = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789ABCDEF"] invertedSet];
+    if ([inputScrollSet isEqualToString:@"HEX"] && [outputScrollSet isEqualToString:@"DEC"]) {
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            NSScanner* pScanner = [NSScanner scannerWithString:inputValue];
+            unsigned int iValue;
+            [pScanner scanHexInt: &iValue];
+            NSString *str = [NSString stringWithFormat:@"%d", iValue];
+            [output setText:[NSString stringWithFormat:@"%d", str.integerValue]];
+            //NSLog(@"HEX to DEC");
+        } else {
+            [output setText:errorH];
+        }
+    }
+    if ([inputScrollSet isEqualToString:@"HEX"] && [outputScrollSet isEqualToString:@"OTT"]) {
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            NSScanner* pScanner = [NSScanner scannerWithString:inputValue];
+            unsigned int iValue;
+            [pScanner scanHexInt: &iValue];
+            NSString *str = [NSString stringWithFormat:@"%d", iValue];
+            [output setText:[NSString stringWithFormat:@"%o", str.integerValue]];
+            //NSLog(@"HEX to OTT");
+        } else {
+            [output setText:errorH];
+        }
+    }
+    if ([inputScrollSet isEqualToString:@"HEX"] && [outputScrollSet isEqualToString:@"BIN"]) {
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            NSScanner* pScanner = [NSScanner scannerWithString:inputValue];
+            unsigned int iValue;
+            [pScanner scanHexInt: &iValue];
+            NSString *strD = [NSString stringWithFormat:@"%d", iValue];
+            NSMutableString *str = [[NSMutableString alloc] initWithString:@""];
+            if(strD.integerValue != 0){
+                for(NSInteger numberCopy = strD.integerValue; numberCopy > 0; numberCopy >>= 1){	
+                    // Prepend "0" or "1", depending on the bit
+                    [str insertString:((numberCopy & 1) ? @"1" : @"0") atIndex:0];
+                }
             }
+            else if(strD.integerValue == 0){
+                [str insertString:@"0" atIndex:0];
+            }
+            [output setText:str];
+            //NSLog(@"HEX to BIN");
+        } else {
+            [output setText:errorH];
         }
-        else if(inputValue.integerValue == 0){
-            [str insertString:@"0" atIndex:0];
+    }
+    if ([inputScrollSet isEqualToString:@"HEX"] && [outputScrollSet isEqualToString:@"HEX"]) {
+        if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
+            [output setText:inputValue];
+            //NSLog(@"HEX to HEX");
+        } else {
+            [output setText:errorH];
         }
-        [output setText:str];
-        //NSLog(@"OTT to BIN");
     }
-    if ([inputScrollSet isEqualToString:@"OTT"] && [outputScrollSet isEqualToString:@"OTT"]) {
-        //NSLog(@"OTT to OTT");
-    }
-    //////////////////////////////////////////////////////////////////////////////
+}//HEX to ALL
+
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = output.text;
 }
@@ -265,8 +416,7 @@
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:2.0];
-    [[self view] removeGestureRecognizer:urecognizer];
-    [[self view] removeGestureRecognizer:drecognizer];
+    self.view.userInteractionEnabled = NO;
     output.transform = CGAffineTransformMakeTranslation(0.0,140.0);
     troll.transform = CGAffineTransformMakeTranslation(0.0,140.0);
     urlImage.transform = CGAffineTransformMakeTranslation(0.0,140.0);
@@ -274,7 +424,10 @@
     
     NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/swipe.caf", [[NSBundle mainBundle] resourcePath]]];
     
-	NSError *error;
+    [[self view] removeGestureRecognizer:drecognizer];
+    [[self view] addGestureRecognizer:urecognizer];
+	
+    NSError *error;
 	audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
 	audioPlayer.numberOfLoops = 0;
     
@@ -297,11 +450,14 @@
             
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:2.0];
-    [[self view] removeGestureRecognizer:urecognizer];
-    [[self view] removeGestureRecognizer:drecognizer];
+    self.view.userInteractionEnabled = NO;
     input.userInteractionEnabled = NO;
     input.transform = CGAffineTransformMakeTranslation(0.0,0.0);
     [UIView commitAnimations];
+    
+    [[self view] removeGestureRecognizer:urecognizer];
+    [[self view] addGestureRecognizer:drecognizer];
+
 }
 
 - (void)alpha_on:(NSTimer *)thetime {
@@ -319,9 +475,8 @@
 }
 
 - (void)animation_end:(NSTimer *)thetime {
-    [[self view] addGestureRecognizer:drecognizer];
-    [[self view] addGestureRecognizer:urecognizer];
     input.userInteractionEnabled = YES;
+    self.view.userInteractionEnabled = YES;
 }
 
 #pragma mark - UI
@@ -345,12 +500,21 @@
 
 //////////////////////////////////////////
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.view.userInteractionEnabled = NO;
+}
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
     
+    //NSLog(@"offset, %f", targetContentOffset->x);
+    float index = targetContentOffset->x/pageW;
+    NSString *offsetI = [NSString stringWithFormat:@"%f", index];
+    NSLog(@"index, %i", offsetI.integerValue);
+    
+    
     //1st HEX
-    if (targetContentOffset->x >= 0 && targetContentOffset->x <= 79) {
-        *targetContentOffset = CGPointMake(40, 0);
+    if (offsetI.integerValue == 0 | offsetI.integerValue == 4 | offsetI.integerValue == 8 | offsetI.integerValue == 12) {
+        *targetContentOffset = CGPointMake(pageW*5-pageG, 0);
         if (scrollView.tag == 1) {
             inputSet = @"HEX";
         } else {
@@ -358,8 +522,8 @@
         }
     }
     //2nd OTT
-    if (targetContentOffset->x >= 80 && targetContentOffset->x <= 159) {
-        *targetContentOffset = CGPointMake(120, 0);
+    if (offsetI.integerValue == 1 | offsetI.integerValue == 5 | offsetI.integerValue == 9 | offsetI.integerValue == 13) {
+        *targetContentOffset = CGPointMake(pageW*6-pageG, 0);
         if (scrollView.tag == 1) {
             inputSet = @"OTT";
         } else {
@@ -367,8 +531,8 @@
         }
     }
     //3th DEC
-    if (targetContentOffset->x >= 160 && targetContentOffset->x <= 239) {
-        *targetContentOffset = CGPointMake(200, 0);
+    if (offsetI.integerValue == 2 | offsetI.integerValue == 6 | offsetI.integerValue == 10 | offsetI.integerValue == 14) {
+        *targetContentOffset = CGPointMake(pageW*7-pageG, 0);
         if (scrollView.tag == 1) {
             inputSet = @"DEC";
         } else {
@@ -376,14 +540,17 @@
         }
     }
     //4th BIN
-    if (targetContentOffset->x >= 240 && targetContentOffset->x <= 320) {
-        *targetContentOffset = CGPointMake(280, 0);
+    if (offsetI.integerValue == 3 | offsetI.integerValue == 7 | offsetI.integerValue == 11 | offsetI.integerValue == 15) {
+        *targetContentOffset = CGPointMake(pageW*8-pageG, 0);
         if (scrollView.tag == 1) {
             inputSet = @"BIN";
         } else {
             outputSet = @"BIN";
         }
     }
+    
+    self.view.userInteractionEnabled = YES;
+    [self endEdit];
 }
 
 

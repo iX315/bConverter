@@ -6,10 +6,11 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FlipsideViewController.h"
 
-@interface bConverterViewController : UIViewController {
+@interface bConverterViewController : UIViewController <FlipsideViewControllerDelegate> {
     AVAudioPlayer *audioPlayer;
+    UIButton *infoButton;
     UITextField *input;
     UILabel *output;
     UIImageView *glow;
@@ -26,6 +27,7 @@
     UISwipeGestureRecognizer *urecognizer;
 }
 
+@property (nonatomic, retain) IBOutlet UIButton *infoButton;
 @property (nonatomic, retain) IBOutlet UITextField *input;
 @property (nonatomic, retain) IBOutlet UILabel *output;
 @property (nonatomic, retain) IBOutlet UIImageView *glow;
@@ -36,6 +38,8 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *inputScroll;
 @property (nonatomic, retain) IBOutlet UIScrollView *outputScroll;
 @property (nonatomic, retain) IBOutlet UIView *pickerView;
+
+@property(nonatomic) float decelerationRate;
 
 -(IBAction)endEdit;
 -(IBAction)initEdit;
