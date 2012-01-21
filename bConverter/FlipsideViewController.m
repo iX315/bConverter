@@ -10,8 +10,9 @@
 
 @implementation FlipsideViewController
 
+@synthesize infoScroll;
 @synthesize infoButton;
-@synthesize readme;
+@synthesize infoControl;
 
 - (void)didReceiveMemoryWarning
 {
@@ -24,9 +25,62 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    pageControlBeingUsed = NO;
+    
+    self.infoControl.currentPage = 0;
+	self.infoControl.numberOfPages = 5;
 	// Do any additional setup after loading the view, typically from a nib.
     [infoButton setImage:[UIImage imageNamed:@"infobutton_.png"] forState:UIControlEventTouchDown];
-    [readme setFont:[UIFont fontWithName:@"WW Digital" size:30.0]];
+    
+    infoScroll.contentSize = CGSizeMake(320*5, 0);
+    
+    [infoScroll setCanCancelContentTouches:NO];
+    infoScroll.clipsToBounds = NO;		// default is NO, we want to restrict drawing within our inputScroll
+    infoScroll.scrollEnabled = YES;
+    infoScroll.pagingEnabled = YES;
+    
+    [self addImageWithName:@"instructions_0.png" atPosition:0];
+    [self addImageWithName:@"instructions_1.png" atPosition:1];
+    [self addImageWithName:@"instructions_2.png" atPosition:2];
+    [self addImageWithName:@"instructions_3.png" atPosition:3];
+    [self addImageWithName:@"instructions_4.png" atPosition:4];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    if (!pageControlBeingUsed) {
+		// Switch the indicator when more than 50% of the previous/next page is visible
+        CGFloat pageWidth = self.infoScroll.frame.size.width;
+        int page = floor((self.infoScroll.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+        self.infoControl.currentPage = page;
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    pageControlBeingUsed = NO;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    pageControlBeingUsed = NO;
+}
+
+- (IBAction)changePage {
+    // update the scroll view to the appropriate page
+    CGRect frame;
+    frame.origin.x = self.infoScroll.frame.size.width * self.infoControl.currentPage;
+    frame.origin.y = 0;
+    frame.size = self.infoScroll.frame.size;
+    [self.infoScroll scrollRectToVisible:frame animated:YES];
+    
+    pageControlBeingUsed = YES;
+}
+
+- (void)addImageWithName:(NSString*)imageString atPosition:(int)position {
+	// add image to scroll view
+	UIImage *image = [UIImage imageNamed:imageString];
+	UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+	imageView.frame = CGRectMake(position*320, 0, 320, 251);
+	[infoScroll addSubview:imageView];
 }
 
 - (void)viewDidUnload

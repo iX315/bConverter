@@ -16,9 +16,15 @@
 
 @interface FlipsideViewController : UIViewController {
     UIButton *infoButton;
-    UILabel *readme;
+    UIScrollView *infoScroll;
+    UIPageControl *infoControl;
+    BOOL pageControlBeingUsed;
 }
+@property (nonatomic, retain) IBOutlet UIScrollView *infoScroll;
 @property (nonatomic, retain) IBOutlet UIButton *infoButton;
-@property (nonatomic, retain) IBOutlet UILabel *readme;
+@property (nonatomic, retain) IBOutlet UIPageControl *infoControl;
+
+- (IBAction)changePage;
+- (void)addImageWithName:(NSString*)imageString atPosition:(int)position;
 
 @end
