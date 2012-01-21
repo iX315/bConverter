@@ -438,7 +438,7 @@ int iD;
 }
 
 -(void)handleSwipeUp:(UISwipeGestureRecognizerDirection *)sender {
-     ////NSLog(@"Swipe received.");
+    //NSLog(@"Swipe received.");
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animation_end:) userInfo:nil repeats:NO];
     
     [UIView beginAnimations:nil context:NULL];
@@ -630,6 +630,8 @@ int iD;
     
     self.view.userInteractionEnabled = YES;
     [self endEdit];
+    [[self view] removeGestureRecognizer:drecognizer];
+    [[self view] addGestureRecognizer:urecognizer];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
