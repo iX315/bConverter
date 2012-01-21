@@ -104,7 +104,7 @@ int iD;
     }
     
     inputScroll.contentSize = CGSizeMake(pageW*16, 0);    
-    [inputScroll setContentOffset:CGPointMake(pageW*3-pageG,0) animated:YES];
+    [inputScroll setContentOffset:CGPointMake(pageW*3-pageG,0) animated:NO];
 
     [outputScroll setCanCancelContentTouches:NO];
 	outputScroll.clipsToBounds = NO;		// default is NO, we want to restrict drawing within our inputScroll
@@ -128,7 +128,7 @@ int iD;
     }
     
     outputScroll.contentSize = CGSizeMake(pageW*16, 0);
-    [outputScroll setContentOffset:CGPointMake(pageW*4-pageG,0) animated:YES];
+    [outputScroll setContentOffset:CGPointMake(pageW*4-pageG,0) animated:NO];
     
     [input setFont:[UIFont fontWithName:@"WW Digital" size:30.0]];
     [output setFont:[UIFont fontWithName:@"WW Digital" size:30.0]];
@@ -511,9 +511,17 @@ int iD;
     NSString *offsetI = [NSString stringWithFormat:@"%f", index];
     NSLog(@"index, %i", offsetI.integerValue);
     
-    
     //1st HEX
-    if (offsetI.integerValue == 0 | offsetI.integerValue == 4 | offsetI.integerValue == 8 | offsetI.integerValue == 12) {
+{
+    if (offsetI.integerValue == 0) {
+        *targetContentOffset = CGPointMake(pageW*1-pageG, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"HEX";
+        } else {
+            outputSet = @"HEX";
+        }
+    }
+    if (offsetI.integerValue == 4) {
         *targetContentOffset = CGPointMake(pageW*5-pageG, 0);
         if (scrollView.tag == 1) {
             inputSet = @"HEX";
@@ -521,8 +529,34 @@ int iD;
             outputSet = @"HEX";
         }
     }
+    if (offsetI.integerValue == 8) {
+        *targetContentOffset = CGPointMake(pageW*9-pageG, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"HEX";
+        } else {
+            outputSet = @"HEX";
+        }
+    }
+    if (offsetI.integerValue == 12) {
+        *targetContentOffset = CGPointMake(pageW*13-pageG, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"HEX";
+        } else {
+            outputSet = @"HEX";
+        }
+    }
+}
     //2nd OTT
-    if (offsetI.integerValue == 1 | offsetI.integerValue == 5 | offsetI.integerValue == 9 | offsetI.integerValue == 13) {
+{
+    if (offsetI.integerValue == 1) {
+        *targetContentOffset = CGPointMake(pageW*2-pageG, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"OTT";
+        } else {
+            outputSet = @"OTT";
+        }
+    }
+    if (offsetI.integerValue == 5) {
         *targetContentOffset = CGPointMake(pageW*6-pageG, 0);
         if (scrollView.tag == 1) {
             inputSet = @"OTT";
@@ -530,8 +564,26 @@ int iD;
             outputSet = @"OTT";
         }
     }
+    if (offsetI.integerValue == 9) {
+        *targetContentOffset = CGPointMake(pageW*10-pageG, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"OTT";
+        } else {
+            outputSet = @"OTT";
+        }
+    }
+}
     //3th DEC
-    if (offsetI.integerValue == 2 | offsetI.integerValue == 6 | offsetI.integerValue == 10 | offsetI.integerValue == 14) {
+{
+    if (offsetI.integerValue == 2) {
+        *targetContentOffset = CGPointMake(pageW*3-pageG, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"DEC";
+        } else {
+            outputSet = @"DEC";
+        }
+    }
+    if (offsetI.integerValue == 6) {
         *targetContentOffset = CGPointMake(pageW*7-pageG, 0);
         if (scrollView.tag == 1) {
             inputSet = @"DEC";
@@ -539,8 +591,26 @@ int iD;
             outputSet = @"DEC";
         }
     }
+    if (offsetI.integerValue == 10) {
+        *targetContentOffset = CGPointMake(pageW*11-pageG, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"DEC";
+        } else {
+            outputSet = @"DEC";
+        }
+    }
+}
     //4th BIN
-    if (offsetI.integerValue == 3 | offsetI.integerValue == 7 | offsetI.integerValue == 11 | offsetI.integerValue == 15) {
+{
+    if (offsetI.integerValue == 3) {
+        *targetContentOffset = CGPointMake(pageW*4-pageG, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"BIN";
+        } else {
+            outputSet = @"BIN";
+        }
+    }
+    if (offsetI.integerValue == 7) {
         *targetContentOffset = CGPointMake(pageW*8-pageG, 0);
         if (scrollView.tag == 1) {
             inputSet = @"BIN";
@@ -548,11 +618,40 @@ int iD;
             outputSet = @"BIN";
         }
     }
+    if (offsetI.integerValue == 11) {
+        *targetContentOffset = CGPointMake(pageW*12-pageG, 0);
+        if (scrollView.tag == 1) {
+            inputSet = @"BIN";
+        } else {
+            outputSet = @"BIN";
+        }
+    }
+}
     
     self.view.userInteractionEnabled = YES;
     [self endEdit];
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.x == pageG)
+        [scrollView setContentOffset:CGPointMake(pageW*5-pageG,0) animated:NO];
+    if (scrollView.contentOffset.x == pageW+pageG)
+        [scrollView setContentOffset:CGPointMake(pageW*6-pageG,0) animated:NO];
+    if (scrollView.contentOffset.x == pageW*2+pageG)
+        [scrollView setContentOffset:CGPointMake(pageW*7-pageG,0) animated:NO];
+    if (scrollView.contentOffset.x == pageW*3+pageG)
+        [scrollView setContentOffset:CGPointMake(pageW*8-pageG,0) animated:NO];
+
+    if (scrollView.contentOffset.x == pageW*8+pageG)
+        [scrollView setContentOffset:CGPointMake(pageW*5-pageG,0) animated:NO];
+    if (scrollView.contentOffset.x == pageW*9+pageG)
+        [scrollView setContentOffset:CGPointMake(pageW*6-pageG,0) animated:NO];
+    if (scrollView.contentOffset.x == pageW*10+pageG)
+        [scrollView setContentOffset:CGPointMake(pageW*7-pageG,0) animated:NO];
+    if (scrollView.contentOffset.x == pageW*11+pageG)
+        [scrollView setContentOffset:CGPointMake(pageW*8-pageG,0) animated:NO];
+    
+}
 
 //////////////////////////////////////////
 
