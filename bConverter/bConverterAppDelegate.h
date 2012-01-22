@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface bConverterAppDelegate : UIResponder <UIApplicationDelegate>
+@interface bConverterAppDelegate : UIResponder <UIApplicationDelegate> {
+    UIAlertView *alert;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

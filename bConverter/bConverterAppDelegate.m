@@ -7,6 +7,7 @@
 //
 
 #import "bConverterAppDelegate.h"
+#import "Utilities.h"
 
 @implementation bConverterAppDelegate
 
@@ -17,7 +18,22 @@
   
     // Override point for customization after application launch.
     [TestFlight takeOff:@"aa3dd3073a41e20a6a3740f978479673_NDM4NjEyMDExLTEyLTA2IDA1OjE0OjE0LjE5MTM0Nw"];
-    [self.window makeKeyAndVisible];
+    
+    //check md5 - read md5 sum of app on the info plist but md5 must not be normal but cripted with self-made cript if not exist or modifyed bye bye app
+    
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* ctrl = [infoDict objectForKey:@"ctrl"];
+        //NSLog(@"ctrl value: %@", ctrl);
+    
+    [Utilities getExecutableFileMD5Signature];
+    
+    if ([ctrl isEqualToString:@"strunz"]) {
+        [self.window makeKeyAndVisible];
+    } else {
+        alert = [[UIAlertView alloc] initWithTitle:@"Cracked" message:@"This application was cracked..." delegate:nil cancelButtonTitle:nil otherButtonTitles:nil , nil];
+        [alert show];
+    }
+    
     return YES;
 }
 

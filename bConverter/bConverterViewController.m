@@ -30,6 +30,8 @@ int start = 0;
 int iU;
 int iD;
 
+bool isConverted = NO;
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -405,6 +407,8 @@ int iD;
 -(void)handleSwipeDown:(UISwipeGestureRecognizerDirection *)sender {
     ////NSLog(@"Swipe received.");
     
+    isConverted = YES;
+    
     [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(animation_end:) userInfo:nil repeats:NO];
 
     [UIView beginAnimations:nil context:NULL];
@@ -439,6 +443,8 @@ int iD;
 
 -(void)handleSwipeUp:(UISwipeGestureRecognizerDirection *)sender {
     //NSLog(@"Swipe received.");
+    
+    isConverted = NO;
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(animation_end:) userInfo:nil repeats:NO];
     
     [UIView beginAnimations:nil context:NULL];
@@ -630,8 +636,13 @@ int iD;
     
     self.view.userInteractionEnabled = YES;
     [self endEdit];
-    [[self view] removeGestureRecognizer:drecognizer];
-    [[self view] addGestureRecognizer:urecognizer];
+    if (isConverted == YES) {
+        [[self view] removeGestureRecognizer:drecognizer];
+        [[self view] addGestureRecognizer:urecognizer];
+    } else {
+        [[self view] addGestureRecognizer:drecognizer];
+        [[self view] removeGestureRecognizer:urecognizer];
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
