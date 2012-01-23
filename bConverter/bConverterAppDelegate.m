@@ -8,30 +8,50 @@
 
 #import "bConverterAppDelegate.h"
 #import "Utilities.h"
+#import "NSData+AESCrypt.h"
 
 @implementation bConverterAppDelegate
 
 @synthesize window = _window;
+bool ststart = YES;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   
     // Override point for customization after application launch.
-    [TestFlight takeOff:@"aa3dd3073a41e20a6a3740f978479673_NDM4NjEyMDExLTEyLTA2IDA1OjE0OjE0LjE5MTM0Nw"];
+    //[TestFlight takeOff:@"aa3dd3073a41e20a6a3740f978479673_NDM4NjEyMDExLTEyLTA2IDA1OjE0OjE0LjE5MTM0Nw"];
     
     //check md5 - read md5 sum of app on the info plist but md5 must not be normal but cripted with self-made cript if not exist or modifyed bye bye app
     
-    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSString* ctrl = [infoDict objectForKey:@"ctrl"];
-        //NSLog(@"ctrl value: %@", ctrl);
+    NSBundle *bundle = [NSBundle mainBundle];
+    NSString *filePath = [bundle pathForResource:@"Info" ofType:@"plist"];
+    NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
     
-    [Utilities getExecutableFileMD5Signature];
+    NSString* FFMotionString = [plistDict objectForKey:@"FFMotionString"];
+    NSString* parola = @"61f45bdaa8282";
     
-    if ([ctrl isEqualToString:@"strunz"]) {
+    NSString *mdcinque = [Utilities getExecutableFileMD5Signature];
+    
+    NSData *plain = [mdcinque dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData *cipher = [plain AES256EncryptWithKey:parola];
+    
+    plain = [cipher AES256DecryptWithKey:parola];
+    
+    if (ststart == YES) {
+        [plistDict setObject:[NSString stringWithFormat:@"%@",cipher] forKey:@"FFMotionString"];
+        [plistDict writeToFile:filePath atomically:YES];
+    }
+    
+    if ([FFMotionString isEqualToString:[NSString stringWithFormat:@"%@",cipher]] || ststart == YES) {
         [self.window makeKeyAndVisible];
+        ststart = YES;
     } else {
-        alert = [[UIAlertView alloc] initWithTitle:@"Cracked" message:@"This application was cracked..." delegate:nil cancelButtonTitle:nil otherButtonTitles:nil , nil];
-        [alert show];
+        ststart = NO;
+        if (ststart == NO) {
+            alert = [[UIAlertView alloc] initWithTitle:@"Cracked" message:@"This application was cracked..." delegate:nil cancelButtonTitle:nil otherButtonTitles:nil , nil];
+            [alert show];
+        }
     }
     
     return YES;

@@ -24,6 +24,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *infoButton;
 @property (nonatomic, retain) IBOutlet UIPageControl *infoControl;
 
+- (IBAction)openAOA;
 - (IBAction)changePage;
 - (void)addImageWithName:(NSString*)imageString atPosition:(int)position;
 

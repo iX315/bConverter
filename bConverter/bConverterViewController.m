@@ -515,7 +515,7 @@ bool isConverted = NO;
     //NSLog(@"offset, %f", targetContentOffset->x);
     float index = targetContentOffset->x/pageW;
     NSString *offsetI = [NSString stringWithFormat:@"%f", index];
-    NSLog(@"index, %i", offsetI.integerValue);
+    //NSLog(@"index, %i", offsetI.integerValue);
     
     //1st HEX
 {

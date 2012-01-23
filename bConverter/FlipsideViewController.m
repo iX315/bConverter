@@ -75,6 +75,10 @@
     pageControlBeingUsed = YES;
 }
 
+- (IBAction)openAOA {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.artofapps.net"]];
+}
+
 - (void)addImageWithName:(NSString*)imageString atPosition:(int)position {
 	// add image to scroll view
 	UIImage *image = [UIImage imageNamed:imageString];

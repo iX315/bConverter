@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="10K549" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11C74" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
@@ -149,10 +149,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="artofapps.png" id="kRX-HU-hoR">
-                                <rect key="frame" x="1" y="6" width="313" height="115"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hrs-mm-k0E" userLabel="artofapps_logo">
+                                <rect key="frame" x="4" y="12" width="313" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="artofapps.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openAOA" destination="lOQ-ov-ulS" eventType="touchDown" id="Jmj-ue-NeL"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Z8F-Dm-FAi">
                                 <rect key="frame" x="248" y="0.0" width="72" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -219,35 +230,6 @@
         <image name="switch_light.png" width="320" height="212"/>
         <image name="troll.png" width="314" height="127"/>
     </resources>
-    <classes>
-        <class className="FlipsideViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlipsideViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changePage"/>
-                <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="infoControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="infoScroll" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="bConverterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/bConverterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="endEdit"/>
-                <relationship kind="action" name="initEdit"/>
-                <relationship kind="outlet" name="closed_down" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="closed_up" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="glow" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="input" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="inputScroll" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="output" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="outputScroll" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="pickerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="troll" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="urlImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

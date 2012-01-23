@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonDigest.h>
 
-@interface Utilities
+@interface Utilities {
+    NSString *hexBytes;
+}
 -(NSString*)getExecutableFileMD5Signature;
 -(NSString*)cHash:(NSString*)algo data:(NSData*)data;
 @end

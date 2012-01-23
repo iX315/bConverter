@@ -67,6 +67,8 @@
 		B28DB4AE148700790026BC67 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B28DB4AB148700790026BC67 /* Icon.png */; };
 		B28DB4AF148700790026BC67 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B28DB4AC148700790026BC67 /* Icon@2x.png */; };
 		B28DB4B0148700790026BC67 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B28DB4AC148700790026BC67 /* Icon@2x.png */; };
+		B293434114CCE21F004F2D6B /* NSData+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = B293433E14CCE21F004F2D6B /* NSData+AESCrypt.m */; };
+		B293434214CCE21F004F2D6B /* NSString+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = B293434014CCE21F004F2D6B /* NSString+AESCrypt.m */; };
 		B2A2FD0014954F8A00A38801 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A2FCFE14954F7F00A38801 /* AVFoundation.framework */; };
 		B2C7ACC714C90F52002B47CF /* infobutton_.png in Resources */ = {isa = PBXBuildFile; fileRef = B2C7ACC514C90F52002B47CF /* infobutton_.png */; };
 		B2C7ACC814C90F52002B47CF /* infobutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B2C7ACC614C90F52002B47CF /* infobutton.png */; };
@@ -211,6 +213,10 @@
 		B285D1A2148E92750031186C /* wwDigital.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wwDigital.ttf; sourceTree = "<group>"; };
 		B28DB4AB148700790026BC67 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		B28DB4AC148700790026BC67 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		B293433D14CCE21F004F2D6B /* NSData+AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AESCrypt.h"; sourceTree = "<group>"; };
+		B293433E14CCE21F004F2D6B /* NSData+AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AESCrypt.m"; sourceTree = "<group>"; };
+		B293433F14CCE21F004F2D6B /* NSString+AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AESCrypt.h"; sourceTree = "<group>"; };
+		B293434014CCE21F004F2D6B /* NSString+AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AESCrypt.m"; sourceTree = "<group>"; };
 		B2A2FCFE14954F7F00A38801 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		B2C7ACC514C90F52002B47CF /* infobutton_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infobutton_.png; sourceTree = "<group>"; };
 		B2C7ACC614C90F52002B47CF /* infobutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infobutton.png; sourceTree = "<group>"; };
@@ -326,8 +332,6 @@
 				B221555B14B62D7800A5BB95 /* FlipsideViewController.h */,
 				B221555C14B62D7900A5BB95 /* FlipsideViewController.m */,
 				B26852D61486C1D400FDDB3B /* Supporting Files */,
-				B2430E9414CC3BA700EC4BCB /* Utilities.h */,
-				B2430E9514CC3BA700EC4BCB /* Utilities.m */,
 			);
 			path = bConverter;
 			sourceTree = "<group>";
@@ -335,6 +339,7 @@
 		B26852D61486C1D400FDDB3B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B293434314CCE227004F2D6B /* Extra */,
 				B26852D71486C1D400FDDB3B /* bConverter-Info.plist */,
 				B26852D81486C1D400FDDB3B /* InfoPlist.strings */,
 				B26852DB1486C1D400FDDB3B /* main.m */,
@@ -375,6 +380,19 @@
 			);
 			name = Resources;
 			path = bConverter;
+			sourceTree = "<group>";
+		};
+		B293434314CCE227004F2D6B /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				B2430E9414CC3BA700EC4BCB /* Utilities.h */,
+				B2430E9514CC3BA700EC4BCB /* Utilities.m */,
+				B293433D14CCE21F004F2D6B /* NSData+AESCrypt.h */,
+				B293433E14CCE21F004F2D6B /* NSData+AESCrypt.m */,
+				B293433F14CCE21F004F2D6B /* NSString+AESCrypt.h */,
+				B293434014CCE21F004F2D6B /* NSString+AESCrypt.m */,
+			);
+			name = Extra;
 			sourceTree = "<group>";
 		};
 		B2CA0F081487CAE8000880AF /* @1x */ = {
@@ -691,6 +709,8 @@
 				B26852E71486C1D400FDDB3B /* bConverterViewController.m in Sources */,
 				B221555D14B62D7900A5BB95 /* FlipsideViewController.m in Sources */,
 				B2430E9614CC3BA700EC4BCB /* Utilities.m in Sources */,
+				B293434114CCE21F004F2D6B /* NSData+AESCrypt.m in Sources */,
+				B293434214CCE21F004F2D6B /* NSString+AESCrypt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,8 +824,8 @@
 					"\"$(SRCROOT)/bConverter\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ADB0D36F-247D-4BF3-B8B1-E0C192F6DFF0";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ADB0D36F-247D-4BF3-B8B1-E0C192F6DFF0";
+				PROVISIONING_PROFILE = "76662F2A-8448-448F-AA31-07BEC7092710";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "76662F2A-8448-448F-AA31-07BEC7092710";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
