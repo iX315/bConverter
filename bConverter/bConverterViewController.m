@@ -11,6 +11,7 @@
 @implementation bConverterViewController
 
 @synthesize infoButton;
+@synthesize settingsButton;
 @synthesize input;
 @synthesize output;
 @synthesize glow;
@@ -148,6 +149,11 @@ bool isConverted = NO;
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (void)settingsViewControllerDidFinish:(FlipsideViewController *)controller
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showAlternate"]) {
@@ -188,8 +194,12 @@ bool isConverted = NO;
     self.view.userInteractionEnabled = YES;
     [[self view] addGestureRecognizer:drecognizer];
     
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = output.text;
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSString *autoCopy = [ud stringForKey:@"autoCopy"];
+    if (autoCopy == @"1") {
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = output.text;
+    }
 }
 
 -(void)conversionDidBeginFrom:(inout NSString *)inputSet to:(inout NSString *)outputSet fromValue:(inout NSString *)inputValue {

@@ -31,6 +31,7 @@
 		B244FD7614CAE66F00A108BD /* instructions_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B244FD6E14CAE66E00A108BD /* instructions_4@2x.png */; };
 		B244FD7714CAE66F00A108BD /* instructions_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B244FD6F14CAE66E00A108BD /* instructions_mask@2x.png */; };
 		B244FD7814CAE66F00A108BD /* readme_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B244FD7014CAE66E00A108BD /* readme_bg@2x.png */; };
+		B25DC5971550764A00E2FEF9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25DC5961550764A00E2FEF9 /* SettingsViewController.m */; };
 		B26852D01486C1D400FDDB3B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26852CF1486C1D300FDDB3B /* UIKit.framework */; };
 		B26852D21486C1D400FDDB3B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26852D11486C1D400FDDB3B /* Foundation.framework */; };
 		B26852D41486C1D400FDDB3B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26852D31486C1D400FDDB3B /* CoreGraphics.framework */; };
@@ -70,6 +71,10 @@
 		B293434114CCE21F004F2D6B /* NSData+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = B293433E14CCE21F004F2D6B /* NSData+AESCrypt.m */; };
 		B293434214CCE21F004F2D6B /* NSString+AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = B293434014CCE21F004F2D6B /* NSString+AESCrypt.m */; };
 		B2A2FD0014954F8A00A38801 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A2FCFE14954F7F00A38801 /* AVFoundation.framework */; };
+		B2C3545E1552DA5D00DA3A9B /* fb.png in Resources */ = {isa = PBXBuildFile; fileRef = B2C3545D1552DA5D00DA3A9B /* fb.png */; };
+		B2C354601552DA6700DA3A9B /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = B2C3545F1552DA6700DA3A9B /* twitter.png */; };
+		B2C354621552DA7300DA3A9B /* fb@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2C354611552DA7300DA3A9B /* fb@2x.png */; };
+		B2C354641552DA7C00DA3A9B /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2C354631552DA7C00DA3A9B /* twitter@2x.png */; };
 		B2C7ACC714C90F52002B47CF /* infobutton_.png in Resources */ = {isa = PBXBuildFile; fileRef = B2C7ACC514C90F52002B47CF /* infobutton_.png */; };
 		B2C7ACC814C90F52002B47CF /* infobutton.png in Resources */ = {isa = PBXBuildFile; fileRef = B2C7ACC614C90F52002B47CF /* infobutton.png */; };
 		B2C7ACCB14C90F9E002B47CF /* infobutton_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2C7ACC914C90F9E002B47CF /* infobutton_@2x.png */; };
@@ -176,6 +181,8 @@
 		B244FD6E14CAE66E00A108BD /* instructions_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instructions_4@2x.png"; sourceTree = "<group>"; };
 		B244FD6F14CAE66E00A108BD /* instructions_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instructions_mask@2x.png"; sourceTree = "<group>"; };
 		B244FD7014CAE66E00A108BD /* readme_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "readme_bg@2x.png"; sourceTree = "<group>"; };
+		B25DC5951550764A00E2FEF9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		B25DC5961550764A00E2FEF9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B26852CB1486C1D300FDDB3B /* bConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26852CF1486C1D300FDDB3B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B26852D11486C1D400FDDB3B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -218,6 +225,10 @@
 		B293433F14CCE21F004F2D6B /* NSString+AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AESCrypt.h"; sourceTree = "<group>"; };
 		B293434014CCE21F004F2D6B /* NSString+AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AESCrypt.m"; sourceTree = "<group>"; };
 		B2A2FCFE14954F7F00A38801 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B2C3545D1552DA5D00DA3A9B /* fb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fb.png; sourceTree = "<group>"; };
+		B2C3545F1552DA6700DA3A9B /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
+		B2C354611552DA7300DA3A9B /* fb@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fb@2x.png"; sourceTree = "<group>"; };
+		B2C354631552DA7C00DA3A9B /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
 		B2C7ACC514C90F52002B47CF /* infobutton_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infobutton_.png; sourceTree = "<group>"; };
 		B2C7ACC614C90F52002B47CF /* infobutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infobutton.png; sourceTree = "<group>"; };
 		B2C7ACC914C90F9E002B47CF /* infobutton_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infobutton_@2x.png"; sourceTree = "<group>"; };
@@ -331,6 +342,8 @@
 				B26852E61486C1D400FDDB3B /* bConverterViewController.m */,
 				B221555B14B62D7800A5BB95 /* FlipsideViewController.h */,
 				B221555C14B62D7900A5BB95 /* FlipsideViewController.m */,
+				B25DC5951550764A00E2FEF9 /* SettingsViewController.h */,
+				B25DC5961550764A00E2FEF9 /* SettingsViewController.m */,
 				B26852D61486C1D400FDDB3B /* Supporting Files */,
 			);
 			path = bConverter;
@@ -417,6 +430,8 @@
 				B26BF85E148842BA00E3F7A0 /* buttons_down_bin.png */,
 				B26BF85F148842BA00E3F7A0 /* buttons_down_dec.png */,
 				B2CCA6C2148B2A0D007FB723 /* Default.png */,
+				B2C3545F1552DA6700DA3A9B /* twitter.png */,
+				B2C3545D1552DA5D00DA3A9B /* fb.png */,
 				B26BF860148842BA00E3F7A0 /* buttons_down_hex.png */,
 				B26BF861148842BA00E3F7A0 /* buttons_down_ott.png */,
 				B2CA0F0E1487CAE8000880AF /* buttons_separator.png */,
@@ -441,8 +456,10 @@
 			children = (
 				B244FD6914CAE66E00A108BD /* artofapps@2x.png */,
 				B244FD6A14CAE66E00A108BD /* instructions_0@2x.png */,
+				B2C354611552DA7300DA3A9B /* fb@2x.png */,
 				B244FD6B14CAE66E00A108BD /* instructions_1@2x.png */,
 				B244FD6C14CAE66E00A108BD /* instructions_2@2x.png */,
+				B2C354631552DA7C00DA3A9B /* twitter@2x.png */,
 				B244FD6D14CAE66E00A108BD /* instructions_3@2x.png */,
 				B244FD6E14CAE66E00A108BD /* instructions_4@2x.png */,
 				B244FD6F14CAE66E00A108BD /* instructions_mask@2x.png */,
@@ -624,6 +641,10 @@
 				B244FD7614CAE66F00A108BD /* instructions_4@2x.png in Resources */,
 				B244FD7714CAE66F00A108BD /* instructions_mask@2x.png in Resources */,
 				B244FD7814CAE66F00A108BD /* readme_bg@2x.png in Resources */,
+				B2C3545E1552DA5D00DA3A9B /* fb.png in Resources */,
+				B2C354601552DA6700DA3A9B /* twitter.png in Resources */,
+				B2C354621552DA7300DA3A9B /* fb@2x.png in Resources */,
+				B2C354641552DA7C00DA3A9B /* twitter@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,7 +716,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" /Users/iX315/Documents/bConverter/bConverter/bConverter/bConverter-Info.plist)\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" /Users/iX315/Documents/bConverter/bConverter/bConverter/bConverter-Info.plist";
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" /Users/iX315/Dropbox/ArtOfApps/BConverter/tests/v0.9/bConverter/bConverter/bConverter-Info.plist)\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" /Users/iX315/Dropbox/ArtOfApps/BConverter/tests/v0.9/bConverter/bConverter/bConverter-Info.plist";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -711,6 +732,7 @@
 				B2430E9614CC3BA700EC4BCB /* Utilities.m in Sources */,
 				B293434114CCE21F004F2D6B /* NSData+AESCrypt.m in Sources */,
 				B293434214CCE21F004F2D6B /* NSString+AESCrypt.m in Sources */,
+				B25DC5971550764A00E2FEF9 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,7 +788,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Michele Iacubino";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michele Iacubino (MZCRR5J3AZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michele Iacubino";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -782,8 +804,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PROVISIONING_PROFILE = "FED3610A-3DD1-4567-BCA1-46F64B49B035";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FED3610A-3DD1-4567-BCA1-46F64B49B035";
+				PROVISIONING_PROFILE = "ADB0D36F-247D-4BF3-B8B1-E0C192F6DFF0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "316644BF-8B99-4227-B8A6-6CE291AACDCF";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -824,8 +846,8 @@
 					"\"$(SRCROOT)/bConverter\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "76662F2A-8448-448F-AA31-07BEC7092710";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "76662F2A-8448-448F-AA31-07BEC7092710";
+				PROVISIONING_PROFILE = "ADB0D36F-247D-4BF3-B8B1-E0C192F6DFF0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ADB0D36F-247D-4BF3-B8B1-E0C192F6DFF0";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -843,7 +865,7 @@
 					"\"$(SRCROOT)/bConverter\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "FED3610A-3DD1-4567-BCA1-46F64B49B035";
+				PROVISIONING_PROFILE = "316644BF-8B99-4227-B8A6-6CE291AACDCF";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FED3610A-3DD1-4567-BCA1-46F64B49B035";
 				WRAPPER_EXTENSION = app;
 			};
@@ -883,6 +905,65 @@
 			};
 			name = Release;
 		};
+		B293444C14CDFB23004F2D6B /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Michele Iacubino";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michele Iacubino";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "316644BF-8B99-4227-B8A6-6CE291AACDCF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "316644BF-8B99-4227-B8A6-6CE291AACDCF";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		B293444D14CDFB23004F2D6B /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Michele Iacubino";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michele Iacubino";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "bConverter/bConverter-Prefix.pch";
+				INFOPLIST_FILE = "bConverter/bConverter-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/bConverter\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "316644BF-8B99-4227-B8A6-6CE291AACDCF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "316644BF-8B99-4227-B8A6-6CE291AACDCF";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Distribution;
+		};
+		B293444E14CDFB23004F2D6B /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/bConverter.app/bConverter";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "bConverter/bConverter-Prefix.pch";
+				INFOPLIST_FILE = "bConverterTests/bConverterTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -891,6 +972,7 @@
 			buildConfigurations = (
 				B26852FF1486C1D400FDDB3B /* Debug */,
 				B26853001486C1D400FDDB3B /* Release */,
+				B293444C14CDFB23004F2D6B /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -900,6 +982,7 @@
 			buildConfigurations = (
 				B26853021486C1D400FDDB3B /* Debug */,
 				B26853031486C1D400FDDB3B /* Release */,
+				B293444D14CDFB23004F2D6B /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -909,6 +992,7 @@
 			buildConfigurations = (
 				B26853051486C1D400FDDB3B /* Debug */,
 				B26853061486C1D400FDDB3B /* Release */,
+				B293444E14CDFB23004F2D6B /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -11,6 +11,7 @@
 @interface bConverterViewController : UIViewController <FlipsideViewControllerDelegate> {
     AVAudioPlayer *audioPlayer;
     UIButton *infoButton;
+    UIButton *settingsButton;
     UITextField *input;
     UILabel *output;
     UIImageView *glow;
@@ -28,6 +29,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIButton *infoButton;
+@property (nonatomic, retain) IBOutlet UIButton *settingsButton;
 @property (nonatomic, retain) IBOutlet UITextField *input;
 @property (nonatomic, retain) IBOutlet UILabel *output;
 @property (nonatomic, retain) IBOutlet UIImageView *glow;
