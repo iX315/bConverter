@@ -9,7 +9,6 @@
 #import "bConverterAppDelegate.h"
 #import "Utilities.h"
 #import "NSData+AESCrypt.h"
-#import "TestFlight.h"
 
 @implementation bConverterAppDelegate
 
@@ -18,18 +17,14 @@ bool ststart = YES;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  
-    // Override point for customization after application launch.
-    [TestFlight takeOff:@"aa3dd3073a41e20a6a3740f978479673_NDM4NjEyMDExLTEyLTA2IDA1OjE0OjE0LjE5MTM0Nw"];
-    
     //check md5 - read md5 sum of app on the info plist but md5 must not be normal but cripted with self-made cript if not exist or modifyed bye bye app
     
-    NSBundle *bundle = [NSBundle mainBundle];
+    /*NSBundle *bundle = [NSBundle mainBundle];
     NSString *filePath = [bundle pathForResource:@"Info" ofType:@"plist"];
     NSMutableDictionary *plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:filePath];
-    
-    NSString* FFMotionString = [plistDict objectForKey:@"FFMotionString"];
-    NSString* parola = @"61f45bdaa8282";
+    */
+    //NSString* FFMotionString = [plistDict objectForKey:@"FFMotionString"];
+    //NSString* parola = @"61f45bdaa8282";
     
     /*NSString *mdcinque = [Utilities getExecutableFileMD5Signature];
     

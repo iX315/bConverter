@@ -188,9 +188,6 @@
 		B2DC50A9155AD3AB00F998A8 /* save_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DC50A7155AD3AB00F998A8 /* save_button@2x.png */; };
 		B2DC50AC155AD47800F998A8 /* save_button.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DC50AA155AD47800F998A8 /* save_button.png */; };
 		B2DC50AD155AD47800F998A8 /* save_button_p.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DC50AB155AD47800F998A8 /* save_button_p.png */; };
-		B2EAED1615644C7E00315254 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2EAED1215644C7E00315254 /* libTestFlight.a */; };
-		B2EAED1715644C7E00315254 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = B2EAED1315644C7E00315254 /* README.txt */; };
-		B2EAED1815644C7E00315254 /* release_notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = B2EAED1415644C7E00315254 /* release_notes.txt */; };
 		B2EAED1A15644CDA00315254 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2EAED1915644CDA00315254 /* libz.dylib */; };
 		B2F5C71C17D2F8E30039B8AE /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F5C71B17D2F8E30039B8AE /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
@@ -382,10 +379,6 @@
 		B2DC50A7155AD3AB00F998A8 /* save_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "save_button@2x.png"; sourceTree = "<group>"; };
 		B2DC50AA155AD47800F998A8 /* save_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save_button.png; sourceTree = "<group>"; };
 		B2DC50AB155AD47800F998A8 /* save_button_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save_button_p.png; sourceTree = "<group>"; };
-		B2EAED1215644C7E00315254 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		B2EAED1315644C7E00315254 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		B2EAED1415644C7E00315254 /* release_notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
-		B2EAED1515644C7E00315254 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		B2EAED1915644CDA00315254 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B2F5C71B17D2F8E30039B8AE /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -406,7 +399,6 @@
 				B26852D01486C1D400FDDB3B /* UIKit.framework in Frameworks */,
 				B26852D21486C1D400FDDB3B /* Foundation.framework in Frameworks */,
 				B26852D41486C1D400FDDB3B /* CoreGraphics.framework in Frameworks */,
-				B2EAED1615644C7E00315254 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,7 +523,6 @@
 			children = (
 				B2F5C71B17D2F8E30039B8AE /* CoreMotion.framework */,
 				B2EAED1915644CDA00315254 /* libz.dylib */,
-				B2EAED1115644C7E00315254 /* TestFlightSDK1.0 */,
 				B22878B915542BA10001E668 /* SystemConfiguration.framework */,
 				B22878B615542B870001E668 /* MessageUI.framework */,
 				B2C354721552EF4900DA3A9B /* Twitter.framework */,
@@ -721,17 +712,6 @@
 			path = "@2x";
 			sourceTree = "<group>";
 		};
-		B2EAED1115644C7E00315254 /* TestFlightSDK1.0 */ = {
-			isa = PBXGroup;
-			children = (
-				B2EAED1215644C7E00315254 /* libTestFlight.a */,
-				B2EAED1315644C7E00315254 /* README.txt */,
-				B2EAED1415644C7E00315254 /* release_notes.txt */,
-				B2EAED1515644C7E00315254 /* TestFlight.h */,
-			);
-			path = TestFlightSDK1.0;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -916,8 +896,6 @@
 				B2DC50A9155AD3AB00F998A8 /* save_button@2x.png in Resources */,
 				B2DC50AC155AD47800F998A8 /* save_button.png in Resources */,
 				B2DC50AD155AD47800F998A8 /* save_button_p.png in Resources */,
-				B2EAED1715644C7E00315254 /* README.txt in Resources */,
-				B2EAED1815644C7E00315254 /* release_notes.txt in Resources */,
 				B290AB78156D90DD000CE05E /* button_up_ascii.png in Resources */,
 				B290AB79156D90DD000CE05E /* buttons_down_ascii.png in Resources */,
 				B290AB7D156D90EE000CE05E /* button_up_ascii@2x.png in Resources */,
@@ -1156,7 +1134,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bConverter/bConverter-Prefix.pch";
 				INFOPLIST_FILE = "bConverter/bConverter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/bConverter\"",
@@ -1178,7 +1156,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bConverter/bConverter-Prefix.pch";
 				INFOPLIST_FILE = "bConverter/bConverter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/bConverter\"",
@@ -1273,7 +1251,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "bConverter/bConverter-Prefix.pch";
 				INFOPLIST_FILE = "bConverter/bConverter-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/bConverter\"",

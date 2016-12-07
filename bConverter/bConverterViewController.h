@@ -71,10 +71,10 @@
 -(IBAction)initEdit;
 -(IBAction)ShareAppViaTwitter:(id)sender;
 -(IBAction)ShareAppViaFacebook:(id)sender;
-- (void)addImageWithName:(NSString*)imageString atDownPosition:(int)position;
-- (void)addImageWithName:(NSString*)imageString atUpPosition:(int)position;
-- (void)conversionDidBeginFrom:(inout NSString *)inputSet to:(inout NSString *)outputSet fromValue:(inout NSString *)inputValue;
 
+- (void)addImageWithName:(NSString*)imageString atPosition:(int)position toScrollView:(UIScrollView*)scrollView;
+- (void)conversionDidBeginFrom:(inout NSString *)inputSet to:(inout NSString *)outputSet fromValue:(inout NSString *)inputValue;
+- (CGSize)calcProps;
 
 //facebook
 -(void)DoLogin;

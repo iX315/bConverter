@@ -114,4 +114,8 @@
 	[super viewDidDisappear:animated];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 @end

@@ -19,8 +19,8 @@ static NSString* kAppId = @"335077529891696";
 @synthesize decelerationRate;
 @synthesize facebook = _facebook;
 
-int pageW = 80;
-int pageG = 40;
+int pageW = 0;
+int pageG = 0;
 int start = 0;
 int iU;
 int iD;
@@ -39,6 +39,9 @@ bool isConverted = NO;
 {
     // Do any additional setup after loading the view, typically from a nib.
     [super viewDidLoad];
+    
+    pageW = [self calcProps].width;
+    pageG = pageW / 2;
     
     //facebook - start load
     txtPostMessage.clipsToBounds = YES;
@@ -114,19 +117,19 @@ bool isConverted = NO;
     for(int iU=-20; iU<20; iU++)
     {
         if (iU == -20 | iU == -15 | iU == -10 | iU == -5 | iU == 0 | iU == 5 | iU == 10 | iU == 15 | iU == 20) {
-            [self addImageWithName:@"button_up_ascii.png" atUpPosition:iU];
+            [self addImageWithName:@"button_up_ascii.png" atPosition:iU toScrollView:inputScroll];
         }
         if (iU == -19 | iU == -14 | iU == -9 | iU == -4 | iU == 1 | iU == 6 | iU == 11 | iU == 16) {
-            [self addImageWithName:@"button_up_dec.png" atUpPosition:iU];
+            [self addImageWithName:@"button_up_dec.png" atPosition:iU toScrollView:inputScroll];
         }
         if (iU == -18 | iU == -13 | iU == -8 | iU == -3 | iU == 2 | iU == 7 | iU == 12 | iU == 17) {
-            [self addImageWithName:@"button_up_bin.png" atUpPosition:iU];
+            [self addImageWithName:@"button_up_bin.png" atPosition:iU toScrollView:inputScroll];
         }
         if (iU == -17 | iU == -12 | iU == -7 | iU == -2 | iU == 3 | iU == 8 | iU == 13 | iU == 18) {
-            [self addImageWithName:@"button_up_hex.png" atUpPosition:iU];
+            [self addImageWithName:@"button_up_hex.png" atPosition:iU toScrollView:inputScroll];
         }
         if (iU == -16 | iU == -11 | iU == -6 | iU == -1 | iU == 4 | iU == 9 | iU == 14 | iU == 19) {
-            [self addImageWithName:@"button_up_ott.png" atUpPosition:iU];
+            [self addImageWithName:@"button_up_ott.png" atPosition:iU toScrollView:inputScroll];
         }
     }
     
@@ -141,19 +144,19 @@ bool isConverted = NO;
     for(int iD=-20; iD<20; iD++)
     {
         if (iD == -20 | iD == -15 | iD == -10 | iD == -5 | iD == 0 | iD == 5 | iD == 10 | iD == 15 | iD == 20) {
-            [self addImageWithName:@"buttons_down_ascii.png" atDownPosition:iD];
+            [self addImageWithName:@"buttons_down_ascii.png" atPosition:iD toScrollView:outputScroll];
         }
         if (iD == -19 | iD == -14 | iD == -9 | iD == -4 | iD == 1 | iD == 6 | iD == 11 | iD == 16) {
-            [self addImageWithName:@"buttons_down_dec.png" atDownPosition:iD];
+            [self addImageWithName:@"buttons_down_dec.png" atPosition:iD toScrollView:outputScroll];
         }
         if (iD == -18 | iD == -13 | iD == -8 | iD == -3 | iD == 2 | iD == 7 | iD == 12 | iD == 17) {
-            [self addImageWithName:@"buttons_down_bin.png" atDownPosition:iD];
+            [self addImageWithName:@"buttons_down_bin.png" atPosition:iD toScrollView:outputScroll];
         }
         if (iD == -17 | iD == -12 | iD == -7 | iD == -2 | iD == 3 | iD == 8 | iD == 13 | iD == 18) {
-            [self addImageWithName:@"buttons_down_hex.png" atDownPosition:iD];
+            [self addImageWithName:@"buttons_down_hex.png" atPosition:iD toScrollView:outputScroll];
         }
         if (iD == -16 | iD == -11 | iD == -6 | iD == -1 | iD == 4 | iD == 9 | iD == 14 | iD == 19) {
-            [self addImageWithName:@"buttons_down_ott.png" atDownPosition:iD];
+            [self addImageWithName:@"buttons_down_ott.png" atPosition:iD toScrollView:outputScroll];
         }
     }
     
@@ -173,12 +176,12 @@ bool isConverted = NO;
 
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
 {
-    [self dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)settingsViewControllerDidFinish:(FlipsideViewController *)controller
 {
-    [self dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -202,14 +205,14 @@ bool isConverted = NO;
         [output setText:@"credits"];
     }else if ([inputValue isEqualToString:@"TROLL"]) {
         troll.alpha = 1.0;
-        [output setText:nil];
+        [output setText:@""];
     }else if ([inputValue isEqualToString:@"input"]) {
         [[self view] removeGestureRecognizer:drecognizer];
         [[self view] removeGestureRecognizer:urecognizer];
     } else {
         //check a database of strings mysql on artofapps site
         //if the string exist then:
-        if ([inputValue isEqualToString:nil]) {
+        if ([inputValue isEqualToString:@""]) {
             //and then set all (urlImage or output)
         } else {
             //else error
@@ -243,7 +246,7 @@ bool isConverted = NO;
         if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
             int i = 0;
             for (NSString *val in inputValues) {
-                [str appendFormat:@"%o",val.integerValue];
+                [str appendFormat:@"%lo",(long)val.integerValue];
                 i++;
                 if (i < inputValues.count) {
                     [str appendFormat:@"&"];
@@ -259,7 +262,7 @@ bool isConverted = NO;
         if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
             int i = 0;
             for (NSString *val in inputValues) {
-                [str appendFormat:@"%X",val.integerValue];
+                [str appendFormat:@"%lX",(long)val.integerValue];
                 i++;
                 if (i < inputValues.count) {
                     [str appendFormat:@"&"];
@@ -275,7 +278,7 @@ bool isConverted = NO;
         if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
             int i = 0;
             for (NSString *val in inputValues) {
-                [str appendFormat:@"%C",val.integerValue];
+                [str appendFormat:@"%C",(unichar)val.integerValue];
                 i++;
                 if (i < inputValues.count) {
                     [str appendFormat:@"&"];
@@ -326,7 +329,7 @@ bool isConverted = NO;
     NSMutableArray *octValues = [[NSMutableArray alloc] init];
     for (NSString *value in inputValues) {
         int r,s=0,i;
-        int n = value.integerValue;
+        int n = value.intValue;
         for(i=0;n!=0;i++)
         {
             r=n%10;
@@ -341,7 +344,7 @@ bool isConverted = NO;
         if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
             int i = 0;
             for (NSString *val in octValues) {
-                [str appendFormat:@"%d",val.integerValue];
+                [str appendFormat:@"%ld",(long)val.integerValue];
                 i++;
                 if (i < inputValues.count) {
                     [str appendFormat:@"&"];
@@ -357,7 +360,7 @@ bool isConverted = NO;
         if ([inputValue rangeOfCharacterFromSet:characterSet].location == NSNotFound) {
             int i = 0;
             for (NSString *val in octValues) {
-                [str appendFormat:@"%X",val.integerValue];
+                [str appendFormat:@"%lX",(long)val.integerValue];
                 i++;
                 if (i < inputValues.count) {
                     [str appendFormat:@"&"];
@@ -400,7 +403,7 @@ bool isConverted = NO;
                 NSArray *inputValues = [val componentsSeparatedByString:@"&"];
                 NSLog(@"%@",inputValues);
                 for (NSString *line in inputValues) {
-                    [str appendFormat:@"%C",line.integerValue];
+                    [str appendFormat:@"%C",(unichar)line.integerValue];
                     i++;
                     if (i < inputValues.count) {
                         [str appendFormat:@"&"];
@@ -432,7 +435,7 @@ bool isConverted = NO;
             int i = 0;
             for (NSString *val in inputValues) {
                 long v = strtol([val UTF8String], NULL, 2);
-                [str appendFormat:@"%d", v];
+                [str appendFormat:@"%ld", v];
                 i++;
                 if (i < inputValues.count) {
                     [str appendFormat:@"&"];
@@ -449,7 +452,7 @@ bool isConverted = NO;
             int i = 0;
             for (NSString *val in inputValues) {
                 long v = strtol([val UTF8String], NULL, 2);
-                [str appendFormat:@"%X", v];
+                [str appendFormat:@"%lX", v];
                 i++;
                 if (i < inputValues.count) {
                     [str appendFormat:@"&"];
@@ -466,7 +469,7 @@ bool isConverted = NO;
             int i = 0;
             for (NSString *val in inputValues) {
                 long v = strtol([val UTF8String], NULL, 2);
-                [str appendFormat:@"%o", v];
+                [str appendFormat:@"%lo", v];
                 i++;
                 if (i < inputValues.count) {
                     [str appendFormat:@"&"];
@@ -483,7 +486,7 @@ bool isConverted = NO;
             int i = 0;
             for (NSString *val in inputValues) {
                 long v = strtol([val UTF8String], NULL, 2);
-                NSScanner* pScanner = [NSScanner scannerWithString:[NSString stringWithFormat:@"%d",v]];
+                NSScanner* pScanner = [NSScanner scannerWithString:[NSString stringWithFormat:@"%ld",v]];
                 unsigned int iValue;
                 [pScanner scanHexInt: &iValue];
                 [str appendFormat:@"%c", iValue];
@@ -587,7 +590,7 @@ bool isConverted = NO;
                 //while ([pScanner scanHexInt: &iVal]) {
                     //NSLog(@"%c",iVal);
                     //[str appendFormat:@"%c",(char)(iVal & 0xFF)];
-                [str appendFormat:@"%c",val];
+                [str appendFormat:@"%@",val];
                 //}
                 i++;
                 if (i < inputValues.count) {
@@ -622,7 +625,7 @@ bool isConverted = NO;
                     [pScanner scanString:val intoString:&iValue];
                     NSString *tmp = [self bitsForString:iValue];
                     long v = strtol([tmp UTF8String], NULL, 2);
-                    [str appendFormat:[NSString stringWithFormat:@"%d", v]];
+                    [str appendFormat:[NSString stringWithFormat:@"%ld", v]];
                     i++;
                     if (i < inputValues.count) {
                         [str appendFormat:@"&"];
@@ -643,7 +646,7 @@ bool isConverted = NO;
                     [pScanner scanString:val intoString:&iValue];
                     NSString *tmp = [self bitsForString:iValue];
                     long v = strtol([tmp UTF8String], NULL, 2);
-                    [str appendFormat:[NSString stringWithFormat:@"%o", v]];
+                    [str appendFormat:[NSString stringWithFormat:@"%lo", v]];
                     i++;
                     if (i < inputValues.count) {
                         [str appendFormat:@"&"];
@@ -684,7 +687,7 @@ bool isConverted = NO;
                 [pScanner scanString:val intoString:&iValue];
                 NSString *tmp = [self bitsForString:iValue];
                 long v = strtol([tmp UTF8String], NULL, 2);
-                [str appendFormat:[NSString stringWithFormat:@"%X", v]];
+                [str appendFormat:[NSString stringWithFormat:@"%lX", v]];
                 i++;
                 if (i < inputValues.count) {
                     [str appendFormat:@"&"];
@@ -727,7 +730,7 @@ bool isConverted = NO;
 
 - (NSString *)bitsForString:(NSString *)value {
     const char *cString = [value UTF8String];
-    int length = strlen(cString);
+    int length = floor(strlen(cString));
     NSMutableString *result = [NSMutableString string];
     for (int i = 0; i < length; i++) {
         [result appendString:[self bits:*cString++ forSize:sizeof(char)]];
@@ -748,7 +751,7 @@ bool isConverted = NO;
      message = [self Concat:message with:NSLocalizedString(@"Shared via @iDrinkWater for iPhone",@"")];
      message = [self Concat:message with:@" - "];
      message = [self Concat:message with:CONST_APP_LINK];*/
-    TWTweetComposeViewController *twitter = [[TWTweetComposeViewController alloc] init];
+    TWTweetComposeViewController *twitter = [TWTweetComposeViewController init];
     [twitter setCompletionHandler:^(TWTweetComposeViewControllerResult result)
      {
          //UIAlertView *v; 
@@ -913,27 +916,32 @@ bool isConverted = NO;
 
 #pragma mark - UI
 
-- (void)addImageWithName:(NSString*)imageString atUpPosition:(int)position {
+- (void)addImageWithName:(NSString*)imageString atPosition:(int)position toScrollView:(UIScrollView*)scrollView {
 	// add image to scroll view
 	UIImage *image = [UIImage imageNamed:imageString];
 	UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-	imageView.frame = CGRectMake(position*80, 0, 80, 86);
-	[inputScroll addSubview:imageView];
+    //imageView.contentMode = UIViewContentModeScaleToFill;
+    if(scrollView.bounds.size.height / image.size.height == 1) {
+        imageView.frame = CGRectMake(position * image.size.width, 0, image.size.width, image.size.height);
+    } else {
+        //CGFloat proportion = scrollView.bounds.size.height / image.size.height;
+        //CGFloat propWidth = image.size.width * proportion;
+        imageView.frame = CGRectMake(position * [self calcProps].width, 0, [self calcProps].width, scrollView.bounds.size.height);
+    }
+	[scrollView addSubview:imageView];
 }
 
-- (void)addImageWithName:(NSString*)imageString atDownPosition:(int)position {
-	// add image to scroll view
-	UIImage *imageDown = [UIImage imageNamed:imageString];
-	UIImageView *imageDownView = [[UIImageView alloc] initWithImage:imageDown];
-	imageDownView.frame = CGRectMake(position*80, 0, 80, 86);
-	[outputScroll addSubview:imageDownView];
+- (CGSize)calcProps {
+    UIImage *image = [UIImage imageNamed:@"button_up_ascii.png"];
+    CGSize proportions = CGSizeMake(inputScroll.bounds.size.width / 4,
+                                    inputScroll.bounds.size.height / image.size.height);
+    return proportions;
 }
-
 
 //////////////////////////////////////////
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    self.view.userInteractionEnabled = NO;
+    //self.view.userInteractionEnabled = NO;
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
@@ -941,7 +949,7 @@ bool isConverted = NO;
     //NSLog(@"offset, %f", targetContentOffset->x);
     float index = targetContentOffset->x/pageW;
     NSString *offsetI = [NSString stringWithFormat:@"%f", index];
-    //NSLog(@"index, %i", offsetI.integerValue);
+    //NSLog(@"index, %li", (long)offsetI.integerValue);
     
     //BIN
 {
@@ -1330,7 +1338,7 @@ bool isConverted = NO;
 }
 - (void)dialogDidComplete:(FBDialog *)dialog
 {
-    NSLog(@"- (void)dialogDidComplete:(FBDialog *)dialog");    
+    NSLog(@"- (void)dialogDidComplete:(FBDialog *)dialog");
     
 }
 - (void)fbSessionInvalidated;
@@ -1401,6 +1409,10 @@ bool isConverted = NO;
                           otherButtonTitles:NSLocalizedString(cOther,@""), nil ];
     [alert show];
     //[alert release];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 @end

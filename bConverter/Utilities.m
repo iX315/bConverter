@@ -25,11 +25,11 @@
 	NSData *rdata;
 	if ([algo isEqualToString:@"sha1"]) {
 		unsigned char hashBytes[CC_SHA1_DIGEST_LENGTH];
-		CC_SHA1([data bytes], [data length], hashBytes);
+		CC_SHA1([data bytes], (CC_LONG)[data length], hashBytes);
 		rdata = [NSData dataWithBytes:hashBytes length:CC_SHA1_DIGEST_LENGTH];
 	}else if ([algo isEqualToString:@"md5" ]) {
 		unsigned char hashBytes[CC_MD5_DIGEST_LENGTH];
-		CC_MD5([data bytes], [data length], hashBytes);
+		CC_MD5([data bytes], (CC_LONG)[data length], hashBytes);
 		rdata = [NSData dataWithBytes:hashBytes length:CC_MD5_DIGEST_LENGTH];
 	} else {
 		return @"NULL";
