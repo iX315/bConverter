@@ -28,4 +28,5 @@
 - (IBAction)changePage;
 - (void)addImageWithName:(NSString*)imageString atPosition:(int)position;
 
+
 @end

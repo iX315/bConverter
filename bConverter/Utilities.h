@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonDigest.h>
 
-@interface Utilities {
+@interface Utilities : NSObject  {
     NSString *hexBytes;
 }
 -(NSString*)getExecutableFileMD5Signature;

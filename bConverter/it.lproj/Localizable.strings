@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  bConverter
+
+  Created by Jury Giannelli on 04/05/12.
+  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+*/
+"TWITTER_TEXT"="Ciao! Sto usando @BConverter_App per iPhone. Link:";
+"FACEBOOK_TEXT"="Ciao! Sto usando BConverter per iPhone. Link:";

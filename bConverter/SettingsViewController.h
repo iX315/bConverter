@@ -17,10 +17,13 @@
 @interface SettingsViewController : UIViewController {
     IBOutlet UIButton *saveButton;
     IBOutlet UISwitch *autoCopySw;
+    IBOutlet UISwitch *accSw;
     IBOutlet UILabel *settingsTitle;
     IBOutlet UILabel *autoCopyLb;
+    IBOutlet UILabel *accLb;
 }
 @property (nonatomic, retain) IBOutlet UIButton *saveButton;
-@property (nonatomic) IBOutlet UISwitch *autoCopySw;
+@property (nonatomic, retain) IBOutlet UISwitch *autoCopySw;
+@property (nonatomic, retain) IBOutlet UISwitch *accSw;
 -(IBAction)saveSettings;
 @end

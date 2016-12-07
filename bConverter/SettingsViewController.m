@@ -12,6 +12,7 @@
 
 @synthesize saveButton;
 @synthesize autoCopySw;
+@synthesize accSw;
 
 - (void)didReceiveMemoryWarning
 {
@@ -27,14 +28,22 @@
     
     [settingsTitle setFont:[UIFont fontWithName:@"WW Digital" size:30.0]];
     [autoCopyLb setFont:[UIFont fontWithName:@"WW Digital" size:17.0]];
+    [accLb setFont:[UIFont fontWithName:@"WW Digital" size:17.0]];
     
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     NSString *autoCopy = [ud stringForKey:@"autoCopy"];
+    NSString *accConv = [ud stringForKey:@"accConv"];
+    [saveButton setImage:[UIImage imageNamed:@"save_button_p.png"] forState:UIControlEventTouchDown];
     
     if (autoCopy == @"1") {
         autoCopySw.on = YES;
     } else {
         autoCopySw.on = NO;
+    }
+    if (accConv == @"1") {
+        accSw.on = YES;
+    } else {
+        accSw.on = NO;
     }
 }
 
@@ -44,6 +53,11 @@
         [ud setObject:@"1" forKey:@"autoCopy"];
     } else {
         [ud setObject:@"0" forKey:@"autoCopy"];
+    }
+    if (accSw.on == YES) {
+        [ud setObject:@"1" forKey:@"accConv"];
+    } else {
+        [ud setObject:@"0" forKey:@"accConv"];
     }
 }
 

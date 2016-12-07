@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F2009" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1179"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--B Converter View Controller-->
+        <!--Converter View Controller-->
         <scene sceneID="5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="bConverterViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="background.png" id="36">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="background.png" id="Yod-4h-mI7">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="input" textAlignment="center" minimumFontSize="15" clearButtonMode="whileEditing" id="64" userLabel="input">
                                 <rect key="frame" x="30" y="20" width="260" height="143"/>
@@ -37,7 +35,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" none="YES" link="YES" selected="YES" staticText="YES"/>
+                                    <accessibilityTraits key="traits" link="YES" selected="YES" staticText="YES"/>
                                 </accessibility>
                                 <fontDescription key="fontDescription" name="DBLCDTempBlack" family="DB LCD Temp" pointSize="30"/>
                                 <color key="textColor" red="0.20000000298023224" green="0.60000002384185791" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -58,27 +56,21 @@
                                     <segue destination="lOQ-ov-ulS" kind="modal" modalTransitionStyle="flipHorizontal" id="fk5-ZI-hw7"/>
                                 </connections>
                             </button>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" image="troll.png" id="113">
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="center" image="troll.png" id="M5m-sp-Zvw">
                                 <rect key="frame" x="3" y="176" width="314" height="127"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" id="pug-G8-dfa" userLabel="urlImage">
                                 <rect key="frame" x="40" y="176" width="240" height="127"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="switch_bg.png" id="37">
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="switch_bg.png" id="w5n-9b-sTP">
                                 <rect key="frame" x="0.0" y="134" width="320" height="212"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="center" image="selectors.png" id="122">
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="center" image="switch_light.png" id="Pkz-P8-5nF">
                                 <rect key="frame" x="0.0" y="134" width="320" height="212"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" image="switch_light.png" id="55">
-                                <rect key="frame" x="0.0" y="134" width="320" height="212"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="121" userLabel="pickerView">
                                 <rect key="frame" x="0.0" y="134" width="320" height="212"/>
@@ -86,7 +78,7 @@
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="106" userLabel="input_scroll">
                                         <rect key="frame" x="0.0" y="20" width="320" height="87"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="delegate" destination="2" id="9hl-Id-GMf"/>
@@ -94,72 +86,91 @@
                                     </scrollView>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="105" userLabel="output_scroll">
                                         <rect key="frame" x="0.0" y="106" width="320" height="87"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="delegate" destination="2" id="CtD-1c-nWF"/>
                                         </connections>
                                     </scrollView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="buttons_separator.png" id="141">
+                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="buttons_separator.png" id="141">
                                         <rect key="frame" x="0.0" y="105" width="320" height="3"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="closed_up.png" id="135" userLabel="closed_up">
+                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="closed_up.png" id="135" userLabel="closed_up">
                                         <rect key="frame" x="0.0" y="1" width="320" height="106"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="closed_down.png" id="136" userLabel="closed_down">
+                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="closed_down.png" id="136" userLabel="closed_down">
                                         <rect key="frame" x="0.0" y="106" width="320" height="106"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" image="selectors.png" id="137">
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="selectors.png" id="aX0-Zb-DKD">
                                 <rect key="frame" x="0.0" y="134" width="320" height="212"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Cvo-xp-dTe" userLabel="settings_btn">
-                                <rect key="frame" x="21" y="19" width="18" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5Ok-42-zq6">
+                                <rect key="frame" x="266" y="426" width="55" height="55"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="fb.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Bak-yr-oOq" kind="modal" modalTransitionStyle="flipHorizontal" id="gte-02-car"/>
+                                    <action selector="ShareAppViaFacebook:" destination="4" eventType="touchUpInside" id="CpJ-Ot-Uw6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hyU-RR-Gae">
+                                <rect key="frame" x="0.0" y="426" width="55" height="55"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="twitter.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ShareAppViaTwitter:" destination="2" eventType="touchUpInside" id="MNu-N3-Kfo"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="closed_down" destination="136" id="139"/>
                         <outlet property="closed_up" destination="135" id="138"/>
-                        <outlet property="glow" destination="55" id="58"/>
+                        <outlet property="fb" destination="5Ok-42-zq6" id="PbR-te-i2O"/>
+                        <outlet property="glow" destination="Pkz-P8-5nF" id="aun-Pd-XtY"/>
                         <outlet property="infoButton" destination="aLc-7x-snm" id="KYa-Zi-R4w"/>
                         <outlet property="input" destination="64" id="66"/>
                         <outlet property="inputScroll" destination="106" id="F1V-fZ-aUz"/>
                         <outlet property="output" destination="50" id="51"/>
                         <outlet property="outputScroll" destination="105" id="1Bo-AU-1QC"/>
                         <outlet property="pickerView" destination="121" id="Smm-Zk-1S0"/>
-                        <outlet property="settingsButton" destination="Cvo-xp-dTe" id="gCj-4c-qaT"/>
-                        <outlet property="troll" destination="113" id="114"/>
+                        <outlet property="troll" destination="M5m-sp-Zvw" id="V9W-fJ-VQr"/>
+                        <outlet property="tw" destination="hyU-RR-Gae" id="erF-r1-E0r"/>
                         <outlet property="urlImage" destination="pug-G8-dfa" id="q9y-r1-vZH"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="104" y="34"/>
+            <point key="canvasLocation" x="-208" y="34"/>
         </scene>
         <!--Flipside View Controller-->
         <scene sceneID="X8H-5p-BXM">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sH4-gc-m3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="lOQ-ov-ulS" customClass="FlipsideViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="btq-9D-U4e">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -196,7 +207,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="2" kind="modal" modalTransitionStyle="flipHorizontal" id="qwZ-tZ-A0u"/>
+                                    <segue destination="Bak-yr-oOq" kind="modal" modalTransitionStyle="flipHorizontal" id="24V-bz-IhZ"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" id="4pH-qu-CBJ" userLabel="info_View">
@@ -226,25 +237,28 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="infoButton" destination="Z8F-Dm-FAi" id="bZz-JV-Pe0"/>
                         <outlet property="infoControl" destination="XKj-XO-vmH" id="kEP-U6-6o9"/>
                         <outlet property="infoScroll" destination="HTC-Ut-YUp" id="FDr-Ff-OS6"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sH4-gc-m3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="529" y="34"/>
+            <point key="canvasLocation" x="237" y="34"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="ZpG-Fy-Tyy">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ccN-pE-cnF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Bak-yr-oOq" customClass="SettingsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ezL-fj-Csm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="background.png" id="aiz-Ka-fNX">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="background.png" id="czq-Qb-ZaY">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
@@ -255,11 +269,11 @@
                                 <color key="textColor" red="0.20000000300000001" green="0.60000002379999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zx9-i3-rrM">
-                                <rect key="frame" x="228" y="423" width="72" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zx9-i3-rrM">
+                                <rect key="frame" x="266" y="426" width="54" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Save">
+                                <state key="normal" title="Save" image="save_button.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -272,7 +286,11 @@
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="4oH-Xi-szU">
-                                <rect key="frame" x="20" y="108" width="79" height="27"/>
+                                <rect key="frame" x="20" y="108" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="vDB-rE-xb0">
+                                <rect key="frame" x="20" y="160" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Automatic copy output" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="wsB-h7-TS7">
@@ -282,81 +300,53 @@
                                 <color key="textColor" red="0.20000000300000001" green="0.60000002379999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Accelerometer conversion" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="OLo-mr-0ZW">
+                                <rect key="frame" x="113" y="163" width="210" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="DBLCDTempBlack" family="DB LCD Temp" pointSize="15"/>
+                                <color key="textColor" red="0.20000000300000001" green="0.60000002379999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="accLb" destination="OLo-mr-0ZW" id="GEl-HK-FzA"/>
+                        <outlet property="accSw" destination="vDB-rE-xb0" id="el7-6E-x97"/>
                         <outlet property="autoCopyLb" destination="wsB-h7-TS7" id="sne-Sb-qtp"/>
                         <outlet property="autoCopySw" destination="4oH-Xi-szU" id="ahh-8g-7GT"/>
-                        <outlet property="saveButton" destination="zx9-i3-rrM" id="rJr-g8-TmT"/>
+                        <outlet property="saveButton" destination="zx9-i3-rrM" id="jL7-FD-eKL"/>
                         <outlet property="settingsTitle" destination="oGl-5Z-qeG" id="pCF-no-mcH"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ccN-pE-cnF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="334" y="630"/>
+            <point key="canvasLocation" x="660" y="34"/>
         </scene>
     </scenes>
     <resources>
         <image name="artofapps.png" width="313" height="115"/>
         <image name="background.png" width="320" height="480"/>
-        <image name="buttons_separator.png" width="320" height="3"/>
+        <image name="buttons_separator.png" width="320" height="5"/>
         <image name="closed_down.png" width="320" height="106"/>
         <image name="closed_up.png" width="320" height="106"/>
+        <image name="fb.png" width="54" height="53"/>
         <image name="infobutton.png" width="72" height="73"/>
         <image name="instructions_mask.png" width="320" height="251"/>
         <image name="readme_bg.png" width="320" height="480"/>
+        <image name="save_button.png" width="54" height="54"/>
         <image name="selectors.png" width="320" height="212"/>
         <image name="switch_bg.png" width="320" height="212"/>
         <image name="switch_light.png" width="320" height="212"/>
         <image name="troll.png" width="314" height="127"/>
+        <image name="twitter.png" width="56" height="53"/>
     </resources>
-    <classes>
-        <class className="FlipsideViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FlipsideViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="changePage"/>
-                <relationship kind="action" name="openAOA"/>
-                <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="infoControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="infoScroll" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="SettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="saveSettings"/>
-                <relationship kind="outlet" name="autoCopyLb" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="autoCopySw" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="saveButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="settingsTitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="bConverterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/bConverterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="endEdit"/>
-                <relationship kind="action" name="initEdit"/>
-                <relationship kind="outlet" name="closed_down" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="closed_up" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="glow" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="infoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="input" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="inputScroll" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="output" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="outputScroll" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="pickerView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="settingsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="troll" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="urlImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <nil key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="kQR-Ky-TKz"/>
-    </inferredMetricsTieBreakers>
 </document>
